@@ -1,0 +1,11 @@
+---
+import Layout from "$lib/layouts/Layout.astro";
+import ProjectThumbs from "$lib/components/ProjectThumbs.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+---
+
+<Layout title="Projects" dark={true} projects={false}>
+  <ProjectThumbs projects={projects} />
+</Layout>

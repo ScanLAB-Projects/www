@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://pandoc.org/demo/example2.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="John MacFarlane">
+  <meta name="dcterms.date" content="2023-10-27">
+  <title>Pandoc User’s Guide</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style type="text/css" id="ctre_styles">
+			#ctre_wnd {
+				position: fixed; bottom: 0; right: 10px;
+				background: #fff; box-shadow: 0px 0px 40px rgba(0,0,0,0.15);
+				border-radius: 3px 3px 0 0;
+				z-index: 2147483647;
+			}
+			</style></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Pandoc User’s Guide</h1>
+<p class="author">John MacFarlane</p>
+<p class="date">October 27, 2023</p>
+</header>
+<h1 id="synopsis">Synopsis</h1>
+<p><code>pandoc</code> [<em>options</em>] [<em>input-file</em>]…</p>
+<h1 id="description">Description</h1>
+<p>Pandoc is a <a href="https://www.haskell.org/">Haskell</a> library for
+converting from one markup format to another, and a command-line tool
+that uses this library.</p>
+<p>Pandoc can convert between numerous markup and word processing
+formats, including, but not limited to, various flavors of <a href="https://daringfireball.net/projects/markdown/">Markdown</a>, <a href="https://www.w3.org/html/">HTML</a>, <a href="https://www.latex-project.org/">LaTeX</a> and <a href="https://en.wikipedia.org/wiki/Office_Open_XML">Word docx</a>. For
+the full lists of input and output formats, see the <code>--from</code>
+and <code>--to</code> <a href="https://pandoc.org/demo/example2.html#general-options">options below</a>.
+Pandoc can also produce <a href="https://www.adobe.com/pdf/">PDF</a>
+output: see <a href="https://pandoc.org/demo/example2.html#creating-a-pdf">creating a PDF</a>, below.</p>
+<p>Pandoc’s enhanced version of Markdown includes syntax for <a href="https://pandoc.org/demo/example2.html#tables">tables</a>, <a href="https://pandoc.org/demo/example2.html#definition-lists">definition
+lists</a>, <a href="https://pandoc.org/demo/example2.html#metadata-blocks">metadata blocks</a>, <a href="https://pandoc.org/demo/example2.html#footnotes">footnotes</a>, <a href="https://pandoc.org/demo/example2.html#citations">citations</a>, <a href="https://pandoc.org/demo/example2.html#math">math</a>, and much more. See below under <a href="https://pandoc.org/demo/example2.html#pandocs-markdown">Pandoc’s Markdown</a>.</p>
+<p>Pandoc has a modular design: it consists of a set of readers, which
+parse text in a given format and produce a native representation of the
+document (an <em>abstract syntax tree</em> or AST), and a set of
+writers, which convert this native representation into a target format.
+Thus, adding an input or output format requires only adding a reader or
+writer. Users can also run custom <a href="https://pandoc.org/filters.html">pandoc filters</a> to modify the
+intermediate AST.</p>
+<p>Because pandoc’s intermediate representation of a document is less
+expressive than many of the formats it converts between, one should not
+expect perfect conversions between every format and every other. Pandoc
+attempts to preserve the structural elements of a document, but not
+formatting details such as margin size. And some document elements, such
+as complex tables, may not fit into pandoc’s simple document model.
+While conversions from pandoc’s Markdown to all formats aspire to be
+perfect, conversions from formats more expressive than pandoc’s Markdown
+can be expected to be lossy.</p>
+<h2 id="using-pandoc">Using pandoc</h2>
+<p>If no <em>input-files</em> are specified, input is read from
+<em>stdin</em>. Output goes to <em>stdout</em> by default. For output to
+a file, use the <code>-o</code> option:</p>
+<pre><code>pandoc -o output.html input.txt</code></pre>
+<p>By default, pandoc produces a document fragment. To produce a
+standalone document (e.g.&nbsp;a valid HTML file including
+<code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>), use the
+<code>-s</code> or <code>--standalone</code> flag:</p>
+<pre><code>pandoc -s -o output.html input.txt</code></pre>
+<p>For more information on how standalone documents are produced, see <a href="https://pandoc.org/demo/example2.html#templates">Templates</a> below.</p>
+<p>If multiple input files are given, pandoc will concatenate them all
+(with blank lines between them) before parsing. (Use
+<code>--file-scope</code> to parse files individually.)</p>
+</body></html>

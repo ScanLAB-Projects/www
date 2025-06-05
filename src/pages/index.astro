@@ -1,0 +1,116 @@
+---
+import Layout from "$lib/layouts/Layout.astro";
+import Hero from "$lib/components/Hero.astro";
+import Heading from "$lib/components/Heading.astro";
+import Banner from "$lib/components/Banner.astro";
+import Video from "$lib/components/Video.astro";
+import { getCollection } from "astro:content";
+import framerateBanner from "$lib/assets/framerate/banner.jpg";
+import felixsBanner from "$lib/assets/felixs-room/banner.jpg";
+import desertBanner from "$lib/assets/desert-pulse/banner.jpg";
+
+const projects = await getCollection("projects");
+const framerate = projects.find(({ slug }) => slug === "framerate");
+const felix = projects.find(({ slug }) => slug === "felixs-room");
+const desert = projects.find(({ slug }) => slug === "desert-pulse");
+---
+
+<Layout title="Home">
+  <Hero
+    heading="A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events"
+    fullscreen={true}
+    homepage={true}><Video /></Hero
+  >
+  <section>
+    <Heading>Selected Works</Heading>
+    <div class="selected-works flex flex-col gap-8">
+      <Banner
+        slug={framerate?.slug}
+        src={framerateBanner}
+        title={framerate?.data.title}
+        client={framerate?.data.client}
+        tags={framerate?.data.tags}
+      />
+      <Banner
+        slug={felix?.slug}
+        src={felixsBanner}
+        title={felix?.data.title}
+        client={felix?.data.client}
+        tags={felix?.data.tags}
+      />
+      <Banner
+        slug={desert?.slug}
+        src={desertBanner}
+        title={desert?.data.title}
+        client={desert?.data.client}
+        tags={desert?.data.tags}
+      />
+    </div>
+    <Heading>Selected Clients</Heading>
+
+    <div
+      class="selected-clients grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12 px-24 md:px-0"
+    >
+      <div class="group flex flex-col">
+        <img src="/clients/Ars-Electronica-Logo.svg" />
+        <img src="/clients/Baltic.svg" />
+        <img src="/clients/Department_for_Transport.svg" />
+        <img src="/clients/LACMA_logo_black.svg" />
+      </div>
+      <div class="group flex flex-col">
+        <img src="/clients/Logo_NIKE.svg" />
+        <img src="/clients/Guardian.svg" />
+        <img src="/clients/XL.svg" />
+        <img src="/clients/NewYorkTimes.svg" />
+      </div>
+      <div class="group flex flex-col">
+        <img src="/clients/PBS_Logo.svg" />
+        <img src="/clients/SciMu.svg" />
+        <img src="/clients/southbank_logo.svg" />
+        <img src="/clients/University_College_London_logo.svg" />
+      </div>
+      <div class="group flex flex-col">
+        <img src="/clients/University_of_Cambridge_logo.svg" />
+        <img src="/clients/citroen.svg" />
+        <img src="/clients/bbc.svg" />
+        <img src="/clients/more4_bw2.svg" />
+      </div>
+    </div>
+  </section>
+</Layout>
+<script>
+  const bannerTags = document.querySelectorAll(".matt button");
+  bannerTags.forEach((el: Element) => {
+    el.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        window.location.assign(
+          `/projects?tag=${(el as HTMLElement).dataset.use}`
+        );
+      },
+      true
+    );
+  });
+</script>
+<style>
+  section {
+    color: var(--col-dark);
+    max-width: var(--width-page);
+    width: 100%;
+    margin: 0 auto;
+  }
+  .selected-clients {
+    max-width: var(--width-section);
+    width: 100%;
+    margin: 0 auto;
+  }
+  .group {
+    gap: 1em;
+    img {
+      width: 80%;
+      height: 100px;
+      object-fit: contain;
+    }
+  }
+</style>

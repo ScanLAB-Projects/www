@@ -1,0 +1,180 @@
+---
+import { capitalize } from '$lib/utils/helpers';
+interface Props {
+  heading: string;
+  subtitle?: string;
+  background?: string | null;
+  link?: {
+    label?: string;
+    href?: string;
+  };
+  vimeo?: string;
+  tags?: string[];
+  fullscreen?: boolean;
+  homepage?: boolean;
+}
+const {
+  tags = [],
+  heading,
+  vimeo = null,
+  homepage = false,
+  background,
+  subtitle = "",
+  link,
+  fullscreen = false
+} = Astro.props;
+
+const fs = fullscreen ? 'is-fullscreen' : ''
+const style = background ? `background-image: url("/pages/${background}");` : {};
+const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
+
+---
+{
+  homepage && 
+    <header {style} data-homepage class={`relative ${fs}`}>
+      <slot />
+        <div class="title absolute bottom-24 px-4 md:px-16 heading-detail is-disabled">
+          <h1 class="text-xl md:text-3xl">{heading}</h1>
+        </div>
+    </header>
+}
+{
+  !video && background &&
+    <header {style} class="relative">
+      <div class="flex flex-col heading-detail">
+        <div class="title">
+          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          {subtitle && <h2 class="text-xl">{subtitle}</h2>}
+        </div>
+        {
+        tags.length && <div class="tags flex flex-row justify-end gap-2">
+            {tags.map((tag) => (
+              <div class="tag-label">{capitalize(tag)}</div>
+            ))}
+          </div>
+        }
+      </div>
+    </header>
+}
+{
+  video && (
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <header {style} class="relative">
+      <iframe id="vimeo" src={video} />
+      <div class="flex flex-col heading-detail">
+        <div class="title">
+          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          {subtitle && <h2 class="text-sm md:text-xl">{subtitle}</h2>}
+        </div>
+        <div class="tags flex flex-row justify-end gap-2">
+          {tags.map((tag) => (
+            <div class="tag-label rounded-md px-2 text-xs flex items-center">{capitalize(tag)}</div>
+          ))}
+        </div>
+      </div>
+    </header>
+  )
+}
+<script defer>
+  const [$header] = document.getElementsByTagName('header')
+  const heading = document.querySelector(".heading-detail")
+  const $vimeo = document.getElementById("vimeo")
+  let $vp = null;
+
+  function toggleHeroText() {
+    heading.classList.toggle("is-disabled")
+  }
+  async function setupVimeo($el) {
+    if ($el) {
+      const Player = await getVimeoAPIPlayer()
+      $vp = new Player($el)
+      $vp.on('play', toggleHeroText)
+      $vp.on('ended', toggleHeroText)
+      $vp.on('pause', toggleHeroText)
+    }
+  }
+  setupVimeo($vimeo)
+  window.addEventListener('hero-is-visible', (e) => {
+    if($vimeo && !e.detail) $vp.pause()
+  })
+  const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    window.dispatchEvent(new CustomEvent("hero-is-visible", { detail: entry.isIntersecting }))
+  });
+  setTimeout(() => {
+    const [onload] = entries
+    window.dispatchEvent(new CustomEvent("hero-is-visible", { detail: onload.isIntersecting }))
+  }, 100)
+}, {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.1,
+});
+observer.observe($header)
+if($header.dataset.hasOwnProperty('homepage')) {
+    const observerTitleText = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    entry.boundingClientRect.y < -100 ? heading.classList.remove('is-disabled') : heading.classList.add('is-disabled')
+  });
+}, {
+  root: document,
+  rootMargin: "0%",
+  threshold: [.9,.8]
+});
+observerTitleText.observe($header)
+}
+async function getVimeoAPIPlayer() {
+  return new Promise((res, rej) => {
+    let expire = 10000;
+    const wait = setInterval(() => {
+      if (window?.Vimeo) {
+        res(window.Vimeo.Player);
+        clearInterval(wait);
+      }
+      expire -= 100;
+      if (expire <= 0) rej();
+    }, 100);
+  });
+}
+</script>
+<style>
+  .tags {
+    width: 100%;
+    .tag-label {
+      border: .125em solid rgba(255, 255, 255, 0.65);
+    }
+  }
+  #vimeo {
+    width: inherit;
+    height: inherit;
+  }
+  header {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--col-black);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: auto 80%;
+    background-attachment: fixed;
+    &.is-fullscreen {
+      height: 100dvh;
+    }
+  }
+  h1,
+  h2 {
+    color: var(--col-white);
+    max-width: 65%;
+    text-shadow: 0 0 .25em rgba(0,0,0,.5);
+  }
+  .heading-detail {
+    position: absolute;
+    width: calc(100% - (2 * var(--spacing-level-4)));
+    bottom: var(--spacing-level-3);
+    left: var(--spacing-level-4);
+    transition: opacity 1s ease-out;
+    &.is-disabled {
+      opacity: 0;
+    }
+  }
+</style>

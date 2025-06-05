@@ -1,0 +1,136 @@
+@import url(fonts.css);
+@import "tailwindcss";
+
+:root {
+  --col-white: #fff;
+  --col-black: #000;
+  --col-dark: #777;
+  --width-section: 768px;
+  --width-banner: 1180px;
+  --width-page: 1280px;
+  --width-mobile: 520px;
+  --width-breakout: 1024px;
+  --spacing-level-1: 6em;
+  --spacing-level-2: 3em;
+  --spacing-level-3: 2em;
+  --spacing-level-4: 1.5em;
+  --spacing-level-5: 1em;
+  --spacing-level-6: 0.75em;
+  --spacing-level-7: 0.5em;
+  --spacing-level-8: 0.25em;
+  --spacing-level-9: 0.125em;
+  --size-base: 20px;
+  --size-smaller: 0.85em;
+  --size-larger: 1.2em;
+  --navigation-svg-colour: var(--col-dark);
+  --nav-hover: var(--col-dark);
+}
+
+html {
+  font-family: var(--font-monserrat);
+}
+a,
+button {
+  cursor: pointer;
+}
+blockquote {
+  max-width: 100%;
+  text-align: center;
+  margin: var(--spacing-level-2) 0;
+}
+.page-content {
+  width: 100%;
+  max-width: var(--width-section);
+}
+.page-content-wide {
+  width: calc(100% - 2em);
+  max-width: var(--width-page);
+}
+main {
+  color: var(--col-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: var(--spacing-level-2);
+  align-items: center;
+  &.no-hero {
+    @apply pt-36;
+  }
+  p a {
+    @apply font-bold;
+  }
+  > p,
+  > h2,
+  > h3,
+  > h4,
+  > h5 {
+    margin: 0 auto;
+    width: var(--width-section);
+    max-width: 100%;
+    line-height: var(--spacing-level-4);
+    letter-spacing: 0.02em;
+    font-weight: 300;
+  }
+  h2,
+  h3,
+  h4 {
+    @apply font-bold;
+  }
+}
+
+a {
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  width: max-content;
+}
+a:hover {
+  color: var(--col-black);
+}
+a:hover::after {
+  width: 100%;
+}
+a:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s;
+  width: 0%;
+  height: 0.125em;
+  background: currentColor;
+  left: 0;
+  top: 100%;
+}
+.tag-label {
+  @apply text-white;
+  @apply text-xs;
+  @apply p-2;
+  @apply px-4;
+  @apply rounded-md;
+  @apply backdrop-blur-sm;
+}
+blockquote p {
+  width: var(--width-breakout);
+  font-size: var(--size-larger);
+}
+@media (min-width: 1440px) {
+  body {
+    font-size: 22px;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  main {
+    p,
+    h2,
+    h3,
+    h4,
+    h5 {
+      padding: 0 1rem;
+    }
+  }
+}

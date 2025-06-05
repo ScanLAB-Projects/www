@@ -1,0 +1,80 @@
+---
+interface Props {
+    title?: string;
+    body: string[];
+    link?: {
+        label?: string;
+        href?: string;
+    };
+    type?: "credits" | "list" | "standard" | "info";
+}
+const { title, body, link, type = "standard" } = Astro.props;
+---
+
+<div class={`block ${type}`}>
+    {title && <p class="bold">{title}</p>}
+    <ul>
+        {
+            body.map((content) => (
+                <li>
+                    <p>{content}</p>
+                </li>
+            ))
+        }
+    </ul>
+    {
+        link && (
+            <p>
+                <a href={link.href || link.label}>{link.label || link.href}</a>
+            </p>
+        )
+    }
+    <slot />
+</div>
+
+<style>
+    .block {
+        width: 768px;
+        max-width: 100%;
+    }
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    ul {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-level-7);
+    }
+    .list li {
+        margin-left: 1em;
+        padding-left: calc(var(--spacing-level-4) - 0.5em);
+        list-style: disc;
+    }
+    .info ul {
+        padding-left: var(--spacing-level-4);
+        border-left: var(--spacing-level-9) solid var(--col-dark);
+    }
+
+    @media (min-width: 768px) {
+        .info ul,
+        .list ul {
+            margin-left: 0.5em;
+        }
+    }
+    @media (max-width: 768px) {
+        .list ul,
+        .info ul {
+            margin-left: var(--spacing-level-4);
+        }
+        .list li {
+            padding-left: 0;
+        }
+        .info ul {
+            padding-left: 0.5em;
+        }
+    }
+</style>

@@ -1,0 +1,38 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  href: string;
+  misc: any;
+}
+const slug = Astro.params.slug;
+const { href, misc } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}",
+);
+
+const source = await images[`/src/assets/${slug}/${href}`];
+if (!source)
+  throw new Error(
+    `"${source}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`,
+  );
+---
+
+<div class="img-anchor">
+  <div class="img-lift">
+    <Image
+      src={source()}
+      alt="A very cool penguin!"
+      style="height: 100%; width: 100%; object-fit: contain;"
+    />
+  </div>
+</div>
+<style>
+  .img-lift img {
+    width: 100%;
+    max-height: 73vh;
+    object-fit: contain;
+    margin: 2em 0;
+  }
+</style>

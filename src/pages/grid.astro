@@ -1,0 +1,39 @@
+---
+import CoreLayout from "$lib/layouts/CoreLayout.astro";
+---
+
+<CoreLayout>
+  <main>
+    <div class="content">i wanted</div>
+    <section>hello</section>
+    <article>i love just wanted to say</article>
+  </main>
+</CoreLayout>
+
+<style>
+  main {
+    --spacer: minmax(2em, 1fr);
+    background-color: aqua;
+    width: min(100%, 800px);
+    row-gap: 1rem;
+    display: grid;
+    grid-template-columns:
+      [two-start] var(--spacer)
+      [one-start] minmax(0, 150px)
+      [three-start] min(300px, 100%) [three-end]
+      minmax(0, 150px) [one-end]
+      var(--spacer) [two-end];
+  }
+  .content {
+    grid-column: one;
+    background-color: blue;
+  }
+  section {
+    grid-column: two;
+    background-color: red;
+  }
+  article {
+    grid-column: three;
+    background-color: green;
+  }
+</style>

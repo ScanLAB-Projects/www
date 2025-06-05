@@ -1,0 +1,78 @@
+---
+
+---
+
+<video
+  id="player"
+  class="video-js is-disabled"
+  loop
+  preload="true"
+  muted
+  autoplay
+  poster="/media/mobile/skeleton.gif"
+>
+  <source class="video-compressed" src="" type="video/webm" />
+</video>
+<style>
+  h3 {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    color: white;
+  }
+  video {
+    position: relative;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<script defer>
+  const isMobileQuery = window.matchMedia("(max-width: 640px)");
+  const isMobile = isMobileQuery.matches;
+  const $player = document.getElementById("player");
+  const std = document.querySelector(".video-compressed");
+  const feeds = ["A", "B", "C"];
+  const randomFeed = feeds[Math.floor(Math.random() * 3)];
+  if (!isMobile) {
+    const s3Media = "https://scanlabprojects.co.uk/";
+    std?.setAttribute("src", `${s3Media}/media/${randomFeed}.webm`);
+    $player.load();
+    $player.addEventListener("canplay", (e) => {
+      $player.play();
+      // removeSpinner()
+      // if(cache.$player.classList.contains("is-disabled")) cache.$player.classList.remove("is-disabled")
+    });
+    $player.volume = 0;
+    window.addEventListener("hero-is-visible", (e) => {
+      if (!e.detail) $player.pause();
+      if (e.detail) $player.play();
+    });
+  }
+
+  // const $keyframe = document.querySelector('.keyframe')
+  // if(state.mobile) removeSpinner()
+  // // hande ios crap
+  // if(ios) {
+  //     removeSpinner()
+  //     if(cache.$player.classList.contains("is-disabled")) cache.$player.classList.remove("is-disabled")
+  //     state.iosplaying = false
+  //     cache.$play = document.querySelector(".ios-play")
+  //     cache.$play.classList.add('has-ios')
+  //     cache.$play.addEventListener("click", function() {
+  //         if(state.iosplaying) {
+  //             iosVideoPause()
+  //         } else {
+  //             cache.$player.play()
+  //             state.iosplaying = true
+  //             if(video.enableFrames) {
+  //                 video.interval = setInterval(() => {
+  //                     videoInterval()
+  //                 }, 300)
+  //             }
+  //         }
+  //         cache.$play.classList.add("is-active")
+  //     })
+  // }
+  // }
+</script>

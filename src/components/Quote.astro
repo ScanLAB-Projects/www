@@ -1,0 +1,61 @@
+---
+interface Props {
+  cite?: string;
+  label?: string;
+  center?: boolean;
+  contain?: boolean;
+}
+const { label, cite, center = true, contain = false } = Astro.props;
+---
+
+<figure
+  class=`quote py-12${center ? ' is-center' : ''}${contain ? ' has-contain' : ''}`
+>
+  {label && <q>{label}</q>}
+  {
+    !label && (
+      <div class="slot-wrap">
+        <slot />
+      </div>
+    )
+  }
+  {cite && <figcaption>&mdash; {cite}</figcaption>}
+</figure>
+
+<style>
+  :global(.quote + .quote) {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  :global(q) {
+    font-weight: bold;
+    font-size: 1.3em;
+    @media (max-width: 600px) {
+      font-size: 1em;
+    }
+  }
+  figure {
+    color: var(--col-dark);
+    width: 100%;
+    margin: 0 auto;
+    max-width: var(--width-page);
+    &.is-center {
+      display: grid;
+      place-content: center;
+    }
+    &.has-contain {
+      max-width: var(--width-section);
+    }
+    @media (max-width: 1024px) {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+    }
+  }
+  q {
+    text-align: center;
+  }
+  .slot-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+</style>

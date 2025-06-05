@@ -1,0 +1,290 @@
+---
+
+---
+
+<nav>
+  <slot />
+  <div class="projects font-light">
+    <a href="/projects">All projects</a>
+  </div>
+  <article class="menu">
+    <div class="_container grid grid-cols-2 place-content-center">
+      <div class="view-links flex flex-col gap-3 md:gap-4">
+        <a href="/about" class="nav-link">About</a>
+        <a href="/projects" class="nav-link">Projects</a>
+        <a href="/shop" class="nav-link">Shop</a>
+        <a href="/jobs" class="nav-link">Jobs</a>
+      </div>
+      <div class="view-meta flex flex-col gap-4 md:gap-6">
+        <div class="meta flex flex-col gap-2">
+          <div class="badge">Address</div>
+          <div class="label">
+            <a>Unit 7, 5 Durham Yard, London E2 6QF</a>
+          </div>
+        </div>
+        <div class="meta flex flex-col gap-2">
+          <div class="badge">Telephone</div>
+          <div class="label"><a>+44 999090</a></div>
+        </div>
+        <div class="meta flex flex-col gap-2">
+          <div class="badge">Email</div>
+          <div class="label"><a>studio@scanlabprojects.co.uk</a></div>
+        </div>
+        <div class="meta flex flex-col gap-2">
+          <div class="badge">Policies</div>
+          <div class="label"><a>Privacy</a></div>
+          <div class="label"><a>Sustainability</a></div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <div class="button">
+    <div
+      class="hamburger hamburger--squeeze"
+      tabindex="0"
+      aria-label="Menu"
+      role="button"
+      aria-controls="navigation"
+    >
+      <div class="hamburger-box">
+        <div class="hamburger-inner"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  let active = false;
+  const trigger = document.querySelector(".hamburger");
+  const page = document.querySelector(".menu");
+
+  function toggle() {
+    if (active) {
+      page?.classList.remove("is-active");
+      trigger!.classList.remove("is-active");
+      document.documentElement.classList.remove("is-static");
+    }
+    if (!active) {
+      page?.classList.add("is-active");
+      trigger!.classList.add("is-active");
+      document.documentElement.classList.add("is-static");
+    }
+    active = !active;
+  }
+
+  trigger!.addEventListener("click", () => toggle());
+  window.addEventListener(
+    "keydown",
+    ({ key }) => active && key === "Escape" && toggle()
+  );
+  window.addEventListener("hero-is-visible", (e) => {
+    if (!e.detail) trigger?.classList.add("off-hero");
+    if (e.detail) trigger?.classList.remove("off-hero");
+  });
+</script>
+<style>
+  .projects a:hover {
+    color: var(--nav-dark);
+  }
+  .label a:hover {
+    color: currentColor;
+  }
+  nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    z-index: 10;
+  }
+  article {
+    position: fixed;
+    top: 0;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--col-white);
+    transition: transform 0.2s;
+    transform: translateY(-100%);
+    ._container {
+      opacity: 0;
+      transform: translateX(-20%);
+      transition: all 0.3s;
+      transition-delay: 0.2s;
+    }
+  }
+  article.is-active {
+    opacity: 1;
+    backdrop-filter: blur(1em);
+    transform: translateY(0%);
+    ._container {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+  .view-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+  }
+  .view-links a {
+    color: white;
+    font-size: var(--spacing-level-3);
+  }
+  .view-meta {
+    position: relative;
+  }
+  .view-meta:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    left: calc(-4em);
+    top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.7);
+  }
+  @media (max-width: 568px) {
+    ._container {
+      grid-template-columns: 1fr;
+      gap: 2em;
+    }
+
+    .view-links {
+      align-items: center;
+    }
+    .view-meta:after {
+      border-left: none;
+    }
+  }
+  .meta {
+    font-size: 0.8em;
+    line-height: initial;
+  }
+
+  .badge {
+    color: var(--col-dark);
+  }
+  .button {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .projects {
+    z-index: 1;
+    color: var(--col-dark);
+    padding: var(--spacing-level-4);
+    a:hover {
+      color: var(--col-white);
+    }
+  }
+
+  .hamburger {
+    font: inherit;
+    display: inline-block;
+    overflow: visible;
+    margin: 0;
+    padding: var(--spacing-level-4);
+    cursor: pointer;
+    transition-timing-function: linear;
+    transition-duration: 0.15s;
+    transition-property: opacity, filter;
+    text-transform: none;
+    color: inherit;
+    border: 0;
+    background-color: transparent;
+  }
+  .hamburger.is-active:hover,
+  .hamburger:hover {
+    opacity: 0.7;
+  }
+  .hamburger.is-active .hamburger-inner,
+  .hamburger.is-active .hamburger-inner:after,
+  .hamburger.is-active .hamburger-inner:before {
+    background-color: var(--col-white);
+  }
+
+  .hamburger-box {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+  }
+  .hamburger-inner {
+    top: 50%;
+    display: block;
+    margin-top: -2px;
+  }
+  .hamburger-inner,
+  .hamburger-inner:after,
+  .hamburger-inner:before {
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    transition-timing-function: ease;
+    transition-duration: 0.15s;
+    transition-property: transform;
+    border-radius: 4px;
+    background-color: var(--navigation-svg-colour);
+  }
+  .hamburger-inner:after,
+  .hamburger-inner:before {
+    display: block;
+    content: "";
+  }
+  .hamburger-inner:before {
+    top: -10px;
+  }
+  .hamburger-inner:after {
+    bottom: -10px;
+  }
+  .hamburger--squeeze .hamburger-inner {
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition-duration: 75ms;
+  }
+  .hamburger--squeeze .hamburger-inner:before {
+    transition:
+      top 75ms ease 0.12s,
+      opacity 75ms ease;
+  }
+  .hamburger--squeeze .hamburger-inner:after {
+    transition:
+      bottom 75ms ease 0.12s,
+      transform 75ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  .hamburger--squeeze.is-active .hamburger-inner {
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(45deg);
+  }
+  .hamburger--squeeze.is-active .hamburger-inner:before {
+    top: 0;
+    transition:
+      top 75ms ease,
+      opacity 75ms ease 0.12s;
+    opacity: 0;
+  }
+  .hamburger--squeeze.is-active .hamburger-inner:after {
+    bottom: 0;
+    transition:
+      bottom 75ms ease,
+      transform 75ms cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+    transform: rotate(-90deg);
+  }
+  .hamburger.is-active .hamburger-inner,
+  .hamburger.is-active .hamburger-inner:after,
+  .hamburger.is-active .hamburger-inner:before {
+    background-color: var(--col-white);
+  }
+  .hamburger:hover .hamburger-inner,
+  .hamburger:hover .hamburger-inner:after,
+  .hamburger:hover .hamburger-inner:before {
+    background-color: var(--nav-hover);
+  }
+  .hamburger.off-hero:hover .hamburger-inner,
+  .hamburger.off-hero:hover .hamburger-inner:after,
+  .hamburger.off-hero:hover .hamburger-inner:before {
+    background-color: var(--col-black);
+  }
+</style>

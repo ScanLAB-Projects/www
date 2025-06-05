@@ -1,0 +1,23 @@
+{
+  "name": "scanlabprojects",
+  "type": "module",
+  "version": "5.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "gen": "node ./fastum.js"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/vite": "^4.1.8",
+    "astro": "^5.8.1",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.2.2"
+  }
+}

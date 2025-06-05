@@ -1,0 +1,82 @@
+---
+import CoreLayout from "../layouts/CoreLayout.astro";
+---
+
+<CoreLayout>
+	<main class="grid">
+		<section class="full">
+			Copy and paste the code below into Run program
+		</section>
+		<section class="grid full">
+			<article class="indent">
+				Step 1: Downloading and Extracting the Map Files The majority of
+				Minecraft maps that you can download will likely be archived within a
+				.zip or .rar file. The folders and files contained in this archive must
+				be extracted into your Minecraft saves folder, this allows Minecraft to
+				detect the map.
+			</article>
+		</section>
+		<article class="breakout">
+			You will need a file archiver program to do this, such as 7-Zip (Windows
+			only) which is free. If you have a Mac,.indent the "Archive Utility" built
+			into OS X will be able to open .zip files by right-clicking on the .zip
+			and
+		</article><div class="indent">
+			selecting "Open With Archive Utility", but you will need a program such as
+			The Unarchiver for .rar files.
+		</div><article>
+			Once you're ready to extract the map, you will need to locate your
+			Minecraft saves folder. Step 2: Locating Your Minecraft Saves Folder
+		</article>
+		<ul class="grid breakout">
+			<li>
+				1.) Click on the Start Menu in Windows (It's the window icon in the
+				bottom left corner).
+			</li>
+
+			<li class="indent">
+				2.) Type run into the search box, and select the Run program at the top
+				of the results.
+			</li>
+
+			<li>3.) Copy and paste the code below into Run program:</li>
+		</ul>
+	</main>
+</CoreLayout>
+
+<style>
+	.grid {
+		--spacer: minmax(0, 1fr);
+		row-gap: 1rem;
+		display: grid;
+		grid-template-columns:
+			[full-start] var(--spacer)
+			[breakout-start] minmax(0, 4em)
+			[content-start] minmax(0, 3em) [indent-start] min(568px, 100%)
+			[content-end indent-end]
+			minmax(0, 4em) [breakout-end]
+			var(--spacer) [full-end];
+	}
+	.grid > * {
+		grid-column: content;
+	}
+	.grid > .breakout {
+		grid-column: breakout;
+		background-color: blue;
+		padding: 2em 0;
+	}
+	.grid .indent {
+		grid-column: indent;
+		background-color: yellow;
+	}
+	.grid .full {
+		padding: 4em;
+		grid-column: full;
+		background-color: red;
+	}
+	article {
+		padding: 1em;
+		grid-column: content;
+		background-color: green;
+	}
+</style>

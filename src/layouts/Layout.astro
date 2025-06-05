@@ -1,0 +1,61 @@
+---
+import "$lib/styles/index.css";
+import Logo from "$lib/components/Logo.astro";
+import Navigator from "$lib/components/Navigator.astro";
+import Footer from "$lib/components/Footer.astro";
+interface Props {
+  title: string;
+  dark?: boolean;
+  projects?: boolean;
+  nav?: boolean;
+}
+const { title, dark = false, projects = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@100;300;600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navigator>
+      <Logo {dark} />
+    </Navigator>
+    <slot />
+    <Footer link={projects} />
+  </body>
+</html>
+<style is:global>
+  html {
+    background: #fff;
+    font-size: var(--size-base);
+  }
+  html.is-static {
+    overflow-y: hidden;
+  }
+  /* has-hero */
+  nav:has(~ header) {
+    --nav-hover: var(--col-white);
+  }
+
+  body {
+    position: relative;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+</style>

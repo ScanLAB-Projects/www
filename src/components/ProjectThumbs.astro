@@ -1,0 +1,166 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { capitalize } from "$lib/utils/helpers";
+import data from "$lib/config/data";
+import Banner from "./Banner.astro";
+
+type Props = {
+  projects: CollectionEntry<"projects">[];
+};
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+);
+
+const { projects } = Astro.props;
+const orderedProjects = data.order
+  .map((href) => {
+    return projects.find(({ slug }) => href === slug);
+  })
+  .filter((child) => !!child);
+
+const meta = orderedProjects.map(({ slug, data }) => ({ ...data, slug }));
+const banners = await orderedProjects.map(getImageData);
+
+async function getImageData({ slug }: CollectionEntry<"projects">) {
+  return await images[`/src/assets/${slug}/banner.jpg`]();
+}
+---
+
+<section class="banners">
+  {
+    banners.map((src, index) => (
+      <Banner
+        {src}
+        slug={meta[index].slug}
+        tags={meta[index].tags}
+        title={meta[index].title}
+        client={meta[index].client}
+      />
+    ))
+  }
+</section>
+<div class="tags is-footer font-light">
+  <button class="tag" data-tag="all">All</button>
+  {
+    data.tags.map((tag) => (
+      <button class="tag" data-tag={tag}>
+        {capitalize(tag)}
+      </button>
+    ))
+  }
+</div>
+<script>
+  import data from "$lib/config/data";
+  type BannerTags = {
+    el: HTMLElement;
+    tags: string[];
+  };
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+
+  const tagnavs = document.querySelectorAll(".tag") as NodeListOf<HTMLElement>;
+  const banners = document.querySelectorAll(
+    ".banner"
+  ) as NodeListOf<HTMLElement>;
+  let bannerTags: BannerTags[] = [];
+  banners.forEach((el) => {
+    const tags = el.dataset.tags
+      ?.split(",")
+      .map((v: string) => v.toUpperCase()) as string[];
+    bannerTags.push({ el, tags });
+  });
+
+  function filterTags(tag: string) {
+    bannerTags.forEach(({ el, tags }) => {
+      if (tag === "ALL") return el.classList.remove("hide");
+      tags.includes(tag)
+        ? el.classList.remove("hide")
+        : el.classList.add("hide");
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  tagnavs.forEach(
+    (el): HTMLElement =>
+      el.addEventListener("click", (e: Event) => {
+        tagnavs.forEach((t) => t.classList.remove("active"));
+        const ref = e.target as HTMLElement;
+        ref?.classList.add("active");
+        const tag = ref?.dataset.tag?.toUpperCase() || "ALL";
+        filterTags(tag);
+      }) as never
+  );
+  const bannerTagBtns = document.querySelectorAll(".matt button");
+  bannerTagBtns.forEach((el: Element) => {
+    el.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        const tag = (el as HTMLElement).dataset.use?.toUpperCase() || "ALL";
+        filterTags(tag);
+      },
+      true
+    );
+  });
+  // Runs on load
+  const validTag =
+    data.tags.includes(params?.tag || "") && params.tag.toUpperCase();
+  if (validTag) filterTags(validTag);
+</script>
+<style>
+  .banner.hide {
+    display: none;
+  }
+  .banners {
+    margin: 0 auto;
+    padding-top: var(--spacing-level-1);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-level-5);
+    width: var(--width-banner);
+    max-width: 100%;
+  }
+
+  .tags {
+    list-style: none;
+    position: sticky;
+    bottom: 0em;
+    font-size: var(--size-smaller);
+    background-color: white;
+    padding: 2em;
+    width: var(--width-banner);
+    max-width: 100%;
+    margin: var(--spacing-level-2) auto;
+    gap: var(--spacing-level-5);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  .tag.active::after,
+  .tag:hover::after {
+    width: 100%;
+  }
+  .tag {
+    cursor: pointer;
+    position: relative;
+    color: var(--col-dark);
+  }
+
+  .tag::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s;
+    width: 0%;
+    height: 0.06em;
+    background: currentColor;
+    left: 0;
+    top: 100%;
+  }
+  @media (max-width: 1180px) {
+    .tags {
+      padding: 1em;
+    }
+  }
+</style>

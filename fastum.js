@@ -1,0 +1,66 @@
+import { writeFile, existsSync, mkdirSync } from "fs";
+// MIGRATION TOOLS
+const content = `---
+title: ""
+client: ""
+subtitle: ""
+description: ""
+background: '.jpg'
+banner: 'banner.jpg'
+tags: []
+---`
+const order = [
+    "desert-pulse",
+    "rhythms-around-us",
+    "framerate",
+    "felixs-room",
+    "epfl",
+    "lost-treasures-of-maya",
+    "pistol",
+    "eternal-return",
+    "buried-in-the-rock",
+    "echoes-from-taiwan",
+    "adult-children",
+    "man-of-the-woods",
+    "guardian-limbo",
+    "ancient-invisible-cities",
+    "post-lenticular-landscapes-korea",
+    "italys-invisible-cities",
+    "mail-rail-viewers",
+    "post-lenticular-landscapes",
+    "dreamlife-of-driverless-cars",
+    "crime-scene",
+    "displaced-witness",
+    "bartlett-transformation",
+    "mary-rose",
+    "pompeii-new-secrets-revealed",
+    "frozen-relic",
+    "climate-impact-tour",
+    "museum-made-digital",
+    "romes-invisible-city-vr",
+    "horizontal-humans",
+    "ibeyi",
+    "phantom",
+    "romes-invisible-city",
+    "collapse",
+    "savage-beauty",
+    "stephensons-rocket",
+    // 'more4',
+    // 'dday',
+    // 'pennsylvaniacastle',
+    // 'shippinggalleries',
+    // 'barn2b',
+    "noise",
+    // 'bartlettdigitalexhibition',
+    "forensic-architecture",
+    // 'falstonecountryshow',
+    "lord-nelsons-trafalgar-coat",
+];
+// order.forEach(async (name) => {
+//     await writeFile(`./src/content/${name}.mdx`, content, console.log)
+// })
+
+order.forEach((name) => {
+    const path = `./src/pages/projects/${name}`
+    if (!existsSync(path)) mkdirSync(path)
+})

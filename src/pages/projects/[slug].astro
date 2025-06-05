@@ -1,0 +1,26 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Layout from "$lib/layouts/Layout.astro";
+import Hero from "$lib/components/Hero.astro";
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map(({ slug, data }) => {
+    return {
+      params: { slug },
+      props: { ...data },
+    };
+  });
+}
+const slug = Astro.params.slug;
+const mdx = await getEntry("projects", slug);
+const { Content } = (await mdx?.render()) || { Content: "" };
+const { title, vimeo, client, tags, background } = Astro.props;
+const image = background ? `${slug}/${background}` : null;
+---
+
+<Layout dark={false} title={title}>
+  <Hero heading={title} {tags} {vimeo} background={image} subtitle={client} />
+  <main>
+    <Content />
+  </main>
+</Layout>

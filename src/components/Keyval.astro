@@ -1,0 +1,22 @@
+---
+interface Props {
+  direction?: "row" | "col";
+  key: string;
+  val: string;
+  align?: "left" | "right";
+}
+const { align = "left", direction = "col", key = "", val = "" } = Astro.props;
+const style = align === "right" ? "text-align: right;" : {};
+---
+
+<div class="page-content" {style}>
+  <h3>{key}</h3>
+  <p>{val}</p>
+</div>
+
+<style>
+  .page-content {
+    /* margin: 0 auto; */
+    /* width: clamp(auto, 100%, 768px); */
+  }
+</style>
