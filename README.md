@@ -10,7 +10,7 @@ Getting started.
 ```bash
 pnpm install    # install locally
 pnpm dev        # preview changes
-pnpm deploy     # push to Github, patch and deploy
+pnpm sync       # push to Github, patch and deploy
 ```
 
 ## Deplopyments
@@ -21,7 +21,7 @@ pnpm deploy     # push to Github, patch and deploy
 > As the previous commit would have been applied automatically, you will need to pull and sync the repo first before pushing again. A simple `git pull` will suffice.
 
 ```bash
-pnpm deploy
+pnpm sync
 ```
 
 🧑‍💻 Otherwise you can make changes directly on the Github repo page itself.
