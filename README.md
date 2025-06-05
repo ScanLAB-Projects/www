@@ -10,4 +10,18 @@ Getting started.
 ```bash
 pnpm install    # install locally
 pnpm dev        # preview changes
+pnpm deploy     # push to Github, patch and deploy
 ```
+
+## Deplopyments
+
+**reccommended**
+🚀 The CICD pipeline configured on Github will automatically build and sync with AWS S3 bucket.
+
+> As the previous commit would have been applied automatically, you will need to pull and sync the repo first before pushing again. A simple `git pull` will suffice.
+
+```bash
+pnpm deploy
+```
+
+🧑‍💻 Otherwise you can make changes directly on the Github repo page itself.
