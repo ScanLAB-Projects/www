@@ -25,3 +25,4 @@ pnpm sync
 ```
 
 🧑‍💻 Otherwise you can make changes directly on the Github repo page itself.
+![](changes.jpg)
