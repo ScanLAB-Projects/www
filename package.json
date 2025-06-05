@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npm version patch && git commit -am 'auto patch applied' && git push",
+    "sync": "npm version patch && git commit -am 'auto patch applied' && git push",
     "gen": "node ./fastum.js"
   },
   "dependencies": {
