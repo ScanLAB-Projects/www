@@ -36,4 +36,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Sync dist to S3
-        run: aws s3 sync ./dist s3://${{ variables.S3_BUCKET }}/
+        run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET }}/
