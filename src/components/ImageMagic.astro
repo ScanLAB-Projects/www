@@ -5,27 +5,34 @@ import { Image } from "astro:assets";
 interface Props {
   href: string;
   misc: any;
+  alt?: string;
+  caption?: string;
 }
+const { href, alt, caption } = Astro.props;
 const slug = Astro.params.slug;
-const { href, misc } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/**/*.{jpeg,jpg,png,gif}",
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
 );
 
 const source = await images[`/src/assets/${slug}/${href}`];
 if (!source)
   throw new Error(
-    `"${source}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`,
+    `"${source}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`
   );
 ---
 
 <div class="img-anchor">
-  <div class="img-lift">
+  <div class="img-lift my-8">
     <Image
       src={source()}
-      alt="A very cool penguin!"
+      alt={alt || caption || "ScanLAB Projects"}
       style="height: 100%; width: 100%; object-fit: contain;"
     />
+    {
+      caption && (
+        <small class="text-xs font-light px-4 lg:px-0">{caption}</small>
+      )
+    }
   </div>
 </div>
 <style>
@@ -33,6 +40,5 @@ if (!source)
     width: 100%;
     max-height: 73vh;
     object-fit: contain;
-    margin: 2em 0;
   }
 </style>

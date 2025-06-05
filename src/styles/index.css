@@ -58,9 +58,7 @@ main {
   &.no-hero {
     @apply pt-36;
   }
-  strong {
-    @apply font-bold;
-  }
+  strong,
   p a {
     @apply font-bold;
   }
@@ -69,12 +67,12 @@ main {
   > h3,
   > h4,
   > h5 {
+    @apply font-light;
     margin: 0 auto;
     width: var(--width-section);
     max-width: 100%;
     line-height: var(--spacing-level-4);
     letter-spacing: 0.02em;
-    font-weight: 300;
   }
   h2,
   h3,
