@@ -41,13 +41,13 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
 {
   !video && background &&
     <header {style} class="relative">
-      <div class="flex flex-col heading-detail">
-        <div class="title">
+      <div class="flex flex-col heading-detail px-2">
+        <div class="title flex flex-col gap-1">
           <h1 class="text-xl md:text-3xl">{heading}</h1>
-          {subtitle && <h2 class="text-xl">{subtitle}</h2>}
+          {subtitle && <h2 class="text-lg font-light">{subtitle}</h2>}
         </div>
         {
-        tags.length && <div class="tags flex flex-row justify-end gap-2">
+        !!tags.length && <div class="tags flex flex-row justify-end gap-2">
             {tags.map((tag) => (
               <div class="tag-label">{capitalize(tag)}</div>
             ))}
@@ -61,10 +61,10 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
     <script src="https://player.vimeo.com/api/player.js"></script>
     <header {style} class="relative">
       <iframe id="vimeo" src={video} />
-      <div class="flex flex-col heading-detail">
-        <div class="title">
+      <div class="flex flex-col heading-detail px-2">
+        <div class="title flex flex-col gap-1">
           <h1 class="text-xl md:text-3xl">{heading}</h1>
-          {subtitle && <h2 class="text-sm md:text-xl">{subtitle}</h2>}
+          {subtitle && <h2 class="text-sm md:text-lg font-light">{subtitle}</h2>}
         </div>
         <div class="tags flex flex-row justify-end gap-2">
           {tags.map((tag) => (

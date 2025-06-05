@@ -58,6 +58,9 @@ main {
   &.no-hero {
     @apply pt-36;
   }
+  strong {
+    @apply font-bold;
+  }
   p a {
     @apply font-bold;
   }

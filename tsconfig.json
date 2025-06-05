@@ -5,6 +5,5 @@
     "paths": {
       "$lib/*": ["src/*"]
     }
-  },
-  "include": ["src/global.d.ts"]
+  }
 }

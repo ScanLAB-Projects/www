@@ -9,7 +9,7 @@ const { label, cite, center = true, contain = false } = Astro.props;
 ---
 
 <figure
-  class=`quote py-12${center ? ' is-center' : ''}${contain ? ' has-contain' : ''}`
+  class=`quote py-16 ${center ? ' is-center' : ''}${contain ? ' has-contain' : ''}`
 >
   {label && <q>{label}</q>}
   {
@@ -19,7 +19,7 @@ const { label, cite, center = true, contain = false } = Astro.props;
       </div>
     )
   }
-  {cite && <figcaption>&mdash; {cite}</figcaption>}
+  {cite && <figcaption class="mt-2 font-light">&mdash; {cite}</figcaption>}
 </figure>
 
 <style>

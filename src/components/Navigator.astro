@@ -77,8 +77,8 @@
     ({ key }) => active && key === "Escape" && toggle()
   );
   window.addEventListener("hero-is-visible", (e) => {
-    if (!e.detail) trigger?.classList.add("off-hero");
-    if (e.detail) trigger?.classList.remove("off-hero");
+    if (!(e as CustomEvent).detail) trigger?.classList.add("off-hero");
+    if ((e as CustomEvent).detail) trigger?.classList.remove("off-hero");
   });
 </script>
 <style>
