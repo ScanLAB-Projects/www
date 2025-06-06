@@ -1,0 +1,31 @@
+---
+interface Props {
+  ctx: "credit-card" | "calendar";
+  size?: string;
+  weight?: string;
+}
+const { ctx, weight = "2", size = "1" } = Astro.props;
+const href = `/sprites.svg#icon-${ctx}`;
+---
+
+<svg
+  width={`${size}em`}
+  height={`${size}em`}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={weight}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use {href}></use>
+</svg>
+
+<style>
+  i {
+    width: fit-content;
+  }
+  i svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
