@@ -4,26 +4,56 @@ import Hero from "$lib/components/Hero.astro";
 import Heading from "$lib/components/Heading.astro";
 import Banner from "$lib/components/Banner.astro";
 import Video from "$lib/components/Video.astro";
+import ExhibitionCard from "$lib/components/ExhibitionCard.astro";
 import { getCollection } from "astro:content";
 import framerateBanner from "$lib/assets/framerate/banner.jpg";
 import felixsBanner from "$lib/assets/felixs-room/banner.jpg";
 import desertBanner from "$lib/assets/desert-pulse/banner.jpg";
-
 const projects = await getCollection("projects");
 const framerate = projects.find(({ slug }) => slug === "framerate");
 const felix = projects.find(({ slug }) => slug === "felixs-room");
 const desert = projects.find(({ slug }) => slug === "desert-pulse");
+const description =
+  "A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events";
 ---
 
-<Layout title="Home">
-  <Hero
-    heading="A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events"
-    fullscreen={true}
-    homepage={true}><Video /></Hero
-  >
+<Layout title="Home - ScanLAB Projects" {description}>
+  <Hero heading={description} fullscreen={true} homepage={true}><Video /></Hero>
+  <section class="flex flex-col gap-16 items-center">
+    <Heading>Current Exhibitions</Heading>
+    <ExhibitionCard
+      active={true}
+      dates="23rd - 1st May"
+      project="rhythms-around-us"
+      tickets="https://google.com"
+      title="Exhib A"
+      client="Tribeca Film Festival"
+      venue="Mercer Labs, New York"
+      cite="Five stars; all around you at all times - A someone"
+      description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+    />
+    <ExhibitionCard
+      dates="23rd - 1st May"
+      project="rhythms-around-us"
+      tickets="https://google.com"
+      title="Exhib A"
+      client="Tribeca Film Festival"
+      venue="Mercer Labs, New York"
+      description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+    />
+    <ExhibitionCard
+      dates="23rd - 1st May"
+      project="rhythms-around-us"
+      tickets="https://google.com"
+      title="Exhib A"
+      client="Tribeca Film Festival"
+      venue="Mercer Labs, New York"
+      description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+    />
+  </section>
   <section>
-    <Heading>Selected Works</Heading>
-    <div class="selected-works flex flex-col gap-8">
+    <Heading>Selected Artworks</Heading>
+    <div class="selected-works flex flex-col gap-16">
       <Banner
         slug={framerate?.slug}
         src={framerateBanner}

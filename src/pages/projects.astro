@@ -6,6 +6,11 @@ import { getCollection } from "astro:content";
 const projects = await getCollection("projects");
 ---
 
-<Layout title="Projects" dark={true} projects={false}>
+<Layout
+  title="Projects - ScanLAB Projects"
+  dark={true}
+  projects={false}
+  description=""
+>
   <ProjectThumbs projects={projects} />
 </Layout>

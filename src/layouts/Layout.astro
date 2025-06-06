@@ -13,9 +13,14 @@ interface Props {
   description?: string;
   slug?: string;
 }
-const { title, slug, description, dark = false, projects = true } = Astro.props;
-
-console.log(slug, title, description);
+const {
+  title,
+  slug,
+  description,
+  dark = false,
+  projects = true,
+  nav = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -60,9 +65,13 @@ console.log(slug, title, description);
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <Navigator>
-      <Logo {dark} />
-    </Navigator>
+    {
+      nav && (
+        <Navigator>
+          <Logo {dark} />
+        </Navigator>
+      )
+    }
     <slot />
     <Footer link={projects} />
   </body>

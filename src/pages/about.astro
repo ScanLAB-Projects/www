@@ -4,13 +4,12 @@ import Hero from "$lib/components/Hero.astro";
 import Quote from "$lib/components/Quote.astro";
 import Heading from "$lib/components/Heading.astro";
 import TeamCard from "$lib/components/TeamCard.astro";
+const description =
+  "ScanLAB Projects is an award winning creative studio. We specialise in exploring the use of large scale 3D scanning in architecture and the creative industries.";
 ---
 
-<Layout dark={true} title="About">
-  <Hero
-    heading="ScanLAB Projects is an award winning creative studio. We specialise in exploring the use of large scale 3D scanning in architecture and the creative industries."
-    background="about/about.jpg"
-  />
+<Layout dark={true} title="About - ScanLAB Projects" {description}>
+  <Hero heading={description} background="about/about.jpg" />
   <main>
     <h2 class="font-light text-xl">
       ScanLAB Projects is a pioneering creative practice.

@@ -34,7 +34,7 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
     <header {style} data-homepage class={`relative ${fs}`}>
       <slot />
         <div class="title absolute bottom-24 px-4 md:px-16 heading-detail is-disabled">
-          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          <h1 class="text-xl md:text-4xl">{heading}</h1>
         </div>
     </header>
 }
@@ -43,7 +43,7 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
     <header {style} class="relative">
       <div class="flex flex-col heading-detail px-2">
         <div class="title flex flex-col gap-1">
-          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          <h1 class="text-xl md:text-4xl">{heading}</h1>
           {subtitle && <h2 class="text-lg font-light">{subtitle}</h2>}
         </div>
         {
@@ -63,7 +63,7 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
       <iframe id="vimeo" src={video} />
       <div class="flex flex-col heading-detail px-2">
         <div class="title flex flex-col gap-1">
-          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          <h1 class="text-xl md:text-4xl">{heading}</h1>
           {subtitle && <h2 class="text-sm md:text-lg font-light">{subtitle}</h2>}
         </div>
         <div class="tags flex flex-row justify-end gap-2">

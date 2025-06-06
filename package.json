@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync": "npm version patch && git push",
-    "gen": "node ./fastum.js"
+    "gen": "node ./fastum.js",
+    "svg": "pnpm dlx svg-symbol-sprite -i ./src/assets/icons -o ./public/sprites.svg"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
