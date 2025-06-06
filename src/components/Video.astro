@@ -32,11 +32,12 @@
   const isMobile = isMobileQuery.matches;
   const $player = document.getElementById("player");
   const std = document.querySelector(".video-compressed");
-  const feeds = ["A", "B", "C"];
+  const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
   if (!isMobile) {
-    const s3Media = "https://scanlabprojects.co.uk/";
-    std?.setAttribute("src", `${s3Media}/media/${randomFeed}.webm`);
+    const s3Media =
+      "http://media.scanlabprojects.s3-website.eu-west-1.amazonaws.com";
+    std?.setAttribute("src", `${s3Media}/${randomFeed}.webm`);
     $player.load();
     $player.addEventListener("canplay", (e) => {
       $player.play();

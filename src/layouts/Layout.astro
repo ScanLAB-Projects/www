@@ -1,5 +1,6 @@
 ---
 import "$lib/styles/index.css";
+import { SEO } from "astro-seo";
 import Logo from "$lib/components/Logo.astro";
 import Navigator from "$lib/components/Navigator.astro";
 import Footer from "$lib/components/Footer.astro";
@@ -8,13 +9,29 @@ interface Props {
   dark?: boolean;
   projects?: boolean;
   nav?: boolean;
+  description?: string;
 }
-const { title, dark = false, projects = true } = Astro.props;
+const { title, description, dark = false, projects = true } = Astro.props;
+const { slug } = Astro.params;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <SEO
+      {title}
+      {description}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: slug
+            ? `https://scanlabprojects.co.uk/images/work/${slug}/adultchildren--banner.jpg`
+            : "http://media.scanlabprojects.s3-website.eu-west-1.amazonaws.com/scanlabprojects.jpg",
+          url: Astro.url.toString(),
+        },
+      }}
+    />
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
@@ -26,7 +43,6 @@ const { title, dark = false, projects = true } = Astro.props;
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
   </head>
   <body>
     <Navigator>
