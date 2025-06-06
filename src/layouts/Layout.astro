@@ -1,5 +1,6 @@
 ---
 import "$lib/styles/index.css";
+import data from "$lib/config/data";
 import { SEO } from "astro-seo";
 import Logo from "$lib/components/Logo.astro";
 import Navigator from "$lib/components/Navigator.astro";
@@ -10,9 +11,11 @@ interface Props {
   projects?: boolean;
   nav?: boolean;
   description?: string;
+  slug?: string;
 }
-const { title, description, dark = false, projects = true } = Astro.props;
-const { slug } = Astro.params;
+const { title, slug, description, dark = false, projects = true } = Astro.props;
+
+console.log(slug, title, description);
 ---
 
 <!doctype html>
@@ -28,8 +31,20 @@ const { slug } = Astro.params;
           image: slug
             ? `https://scanlabprojects.co.uk/images/work/${slug}/adultchildren--banner.jpg`
             : "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects/scanlabprojects.jpg",
-          url: Astro.url.toString(),
         },
+        optional: {
+          siteName: "ScanLAB Projects",
+        },
+      }}
+      extend={{
+        meta: [
+          {
+            name: "twitter:image",
+            content: `${data.s3Bucket}/scanlabprojects.jpg`,
+          },
+          { name: "twitter:title", content: `ScanLAB Projects: ${title}` },
+          { name: "twitter:description", content: description },
+        ],
       }}
     />
     <meta charset="UTF-8" />
