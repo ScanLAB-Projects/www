@@ -24,15 +24,19 @@ const {
 } = Astro.props;
 ---
 
-<article class="flex flex-col font-light max-w-3xl gap-6 pb-12">
-  <div class="flex justify-between">
-    <h3 class="text-2xl"><span class="border-b-2">{title}</span></h3>
-    <div class="flex flex-col items-end">
+<article class="flex flex-col font-light max-w-3xl gap-6 pb-12 w-[100%] px-8">
+  <div class="flex flex-col-reverse sm:flex-row justify-between gap-4">
+    <h3 class="text-2xl font-bold shrink-1">
+      <span class="border-b-2">{title}</span>
+    </h3>
+    <div class="flex flex-col w-[100%] sm:w-[30%] items-end gap-2">
       <div class="flex gap-4 items-center text-sm">
         <Icon ctx="calendar" />
-        <span>{dates}</span>
+        <span class="text-xs md:text-sm">{dates}</span>
       </div>
-      <div class="text-sm text-right">
+      <div class="text-xs
+          md:text-sm
+          text-right">
         <h4>{client}</h4>
         <p>{venue}</p>
       </div>
@@ -43,7 +47,7 @@ const {
     <p class="italic text-right">{cite}</p>
   </div>
 
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between flex-col md:flex-row">
     {
       active && (
         <div class="flex items-center gap-4 rounded-md">

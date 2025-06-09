@@ -15,8 +15,10 @@ const { slug, tags = [], title, client, src } = Astro.props;
 <a href={`/projects/${slug}`} class="banner" data-tags={`${tags}`}>
   <div class="meta @container">
     <div class="frame flex flex-col gap-0 @lg:gap-2">
-      <h2 class="text-3xl @lg:text-5xl font-bold">{title}</h2>
-      <h3 class="text-2xl font-light">{client}</h3>
+      <h2 class="text-xl @sm:text-2xl @lg:text-3xl @xl:text-4xl font-bold">
+        {title}
+      </h2>
+      <h3 class="text-lg @xl:text-2xl font-light">{client}</h3>
     </div>
     <div class="meta-frame">
       <div class="matt flex flex-row gap-2 translate-x-[0]">

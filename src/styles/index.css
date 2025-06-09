@@ -116,6 +116,10 @@ blockquote p {
   width: var(--width-breakout);
   font-size: var(--size-larger);
 }
+main > :not(.img-anchor) {
+  @apply px-8;
+  @apply md:px-0;
+}
 @media (min-width: 1440px) {
   body {
     font-size: 22px;
@@ -125,7 +129,7 @@ blockquote p {
   body {
     font-size: 18px;
   }
-  main {
+  /* main {
     p,
     h2,
     h3,
@@ -133,5 +137,5 @@ blockquote p {
     h5 {
       padding: 0 1rem;
     }
-  }
+  } */
 }

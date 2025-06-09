@@ -19,20 +19,20 @@ const description =
 
 <Layout title="Home - ScanLAB Projects" {description}>
   <Hero heading={description} fullscreen={true} homepage={true}><Video /></Hero>
-  <section class="flex flex-col gap-16 items-center">
+  <section class="flex flex-col gap-12 md:gap-16 items-center">
     <Heading>Current Exhibitions</Heading>
     <ExhibitionCard
       active={true}
       dates="23rd - 1st May"
       project="rhythms-around-us"
       tickets="https://google.com"
-      title="Exhib A"
+      title="FRAMERATE: Rhythms Around Us"
       client="Tribeca Film Festival"
       venue="Mercer Labs, New York"
       cite="Five stars; all around you at all times - A someone"
       description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
     />
-    <ExhibitionCard
+    <!-- <ExhibitionCard
       dates="23rd - 1st May"
       project="rhythms-around-us"
       tickets="https://google.com"
@@ -49,11 +49,11 @@ const description =
       client="Tribeca Film Festival"
       venue="Mercer Labs, New York"
       description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
-    />
+    /> -->
   </section>
   <section>
     <Heading>Selected Artworks</Heading>
-    <div class="selected-works flex flex-col gap-16">
+    <div class="selected-works flex flex-col gap-12 md:gap-16">
       <Banner
         slug={framerate?.slug}
         src={framerateBanner}
@@ -79,27 +79,27 @@ const description =
     <Heading>Selected Clients</Heading>
 
     <div
-      class="selected-clients grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12 px-24 md:px-0"
+      class="selected-clients grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12 px-8 md:px-0"
     >
-      <div class="group flex flex-col">
+      <div class="group gap-4 sm:gap-12 items-center flex flex-col">
         <img src="/clients/Ars-Electronica-Logo.svg" />
         <img src="/clients/Baltic.svg" />
         <img src="/clients/Department_for_Transport.svg" />
         <img src="/clients/LACMA_logo_black.svg" />
       </div>
-      <div class="group flex flex-col">
+      <div class="group gap-4 sm:gap-12 items-center flex flex-col">
         <img src="/clients/Logo_NIKE.svg" />
         <img src="/clients/Guardian.svg" />
         <img src="/clients/XL.svg" />
         <img src="/clients/NewYorkTimes.svg" />
       </div>
-      <div class="group flex flex-col">
+      <div class="group gap-4 sm:gap-12 items-center flex flex-col">
         <img src="/clients/PBS_Logo.svg" />
         <img src="/clients/SciMu.svg" />
         <img src="/clients/southbank_logo.svg" />
         <img src="/clients/University_College_London_logo.svg" />
       </div>
-      <div class="group flex flex-col">
+      <div class="group gap-4 sm:gap-12 items-center flex flex-col">
         <img src="/clients/University_of_Cambridge_logo.svg" />
         <img src="/clients/citroen.svg" />
         <img src="/clients/bbc.svg" />
@@ -136,7 +136,6 @@ const description =
     margin: 0 auto;
   }
   .group {
-    gap: 1em;
     img {
       width: 80%;
       height: 100px;
