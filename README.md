@@ -3,6 +3,8 @@
 ![](scanlabprojects.png)
 Getting started.
 
+## Currently [Staging](http://cicd-staging-scanlab-www.s3-website.eu-west-2.amazonaws.com)
+
 - Node `>20`
 - Package manager `pnpm`
 - Requires Git for branch deployments
