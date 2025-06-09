@@ -1,36 +1,62 @@
 ---
-title: 'Replica / Real / Replica'
-client: 'EPFL (École polytechnique fédérale de Lausanne) | 4K 23mins + 15K 360 3D 12mins'
-description: 'Replica / Real / Replica is a journey through five floors of meticulously restored rooms at The Sir John Soane Museum in London.'
-tags: ['film', 'artwork']
-banner: 'banner.jpg'
+title: "Replica / Real / Replica"
+client: "EPFL (École polytechnique fédérale de Lausanne) | 4K 23mins + 15K 360 3D 12mins"
+description: "Replica / Real / Replica is a journey through five floors of meticulously restored rooms at The Sir John Soane Museum in London."
+tags: ["film", "artwork"]
+banner: "banner.jpg"
 vimeo: "645942374"
 ---
 
-import Block from '../../components/Block.astro'
-import ImageMagic from "../../components/ImageMagic.astro";
+import Quote from "$lib/components/Quote.astro";
+import Block from "$lib/components/Block.astro";
+import ImageMagic from "$lib/components/ImageMagic.astro";
 
-# {frontmatter.title}
-all this **talk** all day long
+Produced for EPFL’s exhibition Deep Fakes: Art and its Double. Replica / Real / Replica takes two forms. A digital film - a 4K, equirectangular lensed, 23 minute seamlessly looping film with soundtrack and an immersive media installation - a 15K, 360 film in 3D, touring the same spectacular locations visited within the film.
 
-Hello styles?
+Replica / Real / Replica is a journey through five floors of meticulously restored rooms at The Sir John Soane Museum in London. Each space is filled with original and duplicate fragments of antiquity
 
-<Block title="" body={["Anetta Jones", "ScanLAB Projects", "Tel. +44 7411 943139"]} link={{ href: 'anetta@scanlabprojects.co.uk' }} />
-ScanLAB Projects is a pioneering creative practice.
-We digitise the world, transforming temporary moments and spaces into compelling permanent experiences, images and film. We design online environments, immersive installations and objects.
-<ImageMagic href="FelixsRoom_Body1.jpg"/>
-<ImageMagic href="FRAMERATE_Pub03_4K Large.jpeg"/>
-Our primary medium is 3D scanning, a form of machine vision that we argue is the future of photography and much more beyond. As the electronic eyes for billions of mobile phones and driverless vehicles 3D scanners are the cartographers of the future. By critically observing places and events through the eyes of [link](https://astro.build/blog/images/) these machines our work hopes to glance at the future we will all inhabit.
-<Block type="list" title="With special thanks to:" body={["Helen Dorey, Deputy Director and Inspectress - The Sir John Soane's Museum","Dr. Mostafa Waziri, Secretary General of the Supreme Council of Antiquities of Egypt, Ministry of Tourism and Antiquities"]} />
+<ImageMagic href="SHOT-04_SOANE.jpg" />
+<ImageMagic href="SHOT-05_SOANE.jpg" />
 
-> "some of the best tasting bulgogi I have ever come across", mandown - Cheese UK
+Two of the most iconic collections housed in Soane's building provide the starting point to venture further afield; we travel to the real and replica Tombs of King Seti I in the Valley of the Kings and its duplicate created by Factum Foundation, via Seti’s original Sarcophagus in the Soane’s sepulchral chamber; and to the infamous human casts set inside the ruins of Pompeii via Soane’s cork replica in the museums model room.
 
-[link](https://astro.build/blog/images/)
+<ImageMagic href="SHOT-01_LUXOR.jpg" />
+<ImageMagic href="SHOT-08_LUXOR.jpg" />
 
-Founded in 2010, we have worked with leading architects, broadcasters, scientists and artists from across the world. ScanLAB operate from concept, through on location scanning, to delivered product. Our work has featured in major TV documentaries and cinema screenings, been widely published and exhibited internationally.
+We visit both Egypt and Italy in forensic digital detail via their LiDAR doppelgangers. Within these models we find two of the most notorious facsimiles in the world: we discover the data used to create the Factum Foundations near-perfect replica of Kings Seti I’s Tomb, and we reveal the unexpected interior of the Pompeii casts, thought to be copies after originals are believed to have been destroyed by Allied raids in WWII.
 
-<Block type="info" body={["Eternal Return premiered at STRP Festival, Eindhoven, April 2019.",
-"WELD, Stockholm, May 2019",
-"Göteborgs Konsthall, Gothenburg, August 2019",
-"SXSW Virtual Cinema, Austin, March 2020",
-"CPH:DOX, Copenhaghen, March 2020"]} title="Tour Info"/>
+<ImageMagic href="SHOT-09_SOANE.jpg" />
+<ImageMagic href="SHOT-06_POMPEII.jpg" />
+
+<ImageMagic href="CM7A9671.jpg" />
+<ImageMagic href="CM7A9842.jpg" />
+
+<Block
+  type="info"
+  body={[
+"Directed and Produced by ScanLAB Projects",
+"Sound design by Pascal Wyse",
+"Original 3D scan data collected by;",
+"Sir John Soane’s Museum - ScanLAB Projects",
+"Pompeii Archaeological Park - ScanLAB Projects",
+"Luxor & Valley of the Kings - The Polytechnic University of Turin",
+"Seti I Sarcophagus - Factum Foundation",
+"Seti I Tomb (KV17) - Factum Foundation",
+
+]} />
+
+<Block
+  type="list"
+  title="With special thanks to:"
+  body={[
+    "Helen Dorey, Deputy Director and Inspectress - The Sir John Soane's Museum",
+    "Dr. Mostafa Waziri, Secretary General of the Supreme Council of Antiquities of Egypt, Ministry of Tourism and Antiquities",
+    "Mohamed El Seaidy, Director of Scientific Office of the Secretary General Of the Supreme Council of Antiquities, Ministry of Tourism and Antiquities",
+    "Marianne Tames-Demauras, Archaeological Scientist & Egyptologist, University of Cambridge.",
+    "Professor Franco Porcelli, Department of Applied Science and Technology, Polytechnic University of Turin",
+    "Nannina Spanò, Associate Professor Polytechnic University of Turin",
+    "Filiberto Chiabrando, Associate Professor Polytechnic University of Turin",
+    "Professor Massimo Osanna, Director General, General Director, Parco Archeologico di Pompei",
+    "Lion Television",
+  ]}
+/>

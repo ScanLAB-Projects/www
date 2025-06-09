@@ -14,13 +14,34 @@ export async function getStaticPaths() {
 const slug = Astro.params.slug;
 const mdx = await getEntry("projects", slug);
 const { Content } = (await mdx?.render()) || { Content: "" };
-const { title, vimeo, client, tags, background, description } = Astro.props;
+const { title, vimeo, client, tags, background, description, date } =
+  Astro.props;
 const image = background ? `${slug}/${background}` : null;
 ---
 
 <Layout dark={false} {title} {slug} {description}>
-  <Hero heading={title} {tags} {vimeo} background={image} subtitle={client} />
+  <Hero
+    heading={title}
+    {tags}
+    {date}
+    {vimeo}
+    background={image}
+    subtitle={client}
+  />
   <main>
+    <!-- {
+      date && (
+        <date class="text-xs text-right">
+          <span class="border rounded-md p-2">{date}</span>
+        </date>
+      )
+    } -->
     <Content />
   </main>
 </Layout>
+
+<style>
+  date {
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.25); */
+  }
+</style>

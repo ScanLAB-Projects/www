@@ -12,17 +12,19 @@ interface Props {
   tags?: string[];
   fullscreen?: boolean;
   homepage?: boolean;
+  date?: string;
 }
 const {
   tags = [],
   heading,
-  vimeo = null,
+  vimeo,
   homepage = false,
   background,
   subtitle = "",
   link,
-  fullscreen = false
-} = Astro.props;
+  fullscreen = false,
+  date,
+}: Props = Astro.props;
 
 const fs = fullscreen ? 'is-fullscreen' : ''
 const style = background ? `background-image: url("/pages/${background}");` : {};

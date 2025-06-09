@@ -31,37 +31,8 @@
         "background": {
           "type": "string"
         },
-        "hero": {
-          "type": "object",
-          "properties": {
-            "image": {
-              "type": "string"
-            },
-            "vimeo": {
-              "type": "string"
-            },
-            "link": {
-              "type": "object",
-              "properties": {
-                "label": {
-                  "type": "string"
-                },
-                "url": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "label",
-                "url"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "image",
-            "vimeo"
-          ],
-          "additionalProperties": false
+        "date": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"

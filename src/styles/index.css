@@ -6,8 +6,8 @@
   --col-black: #000;
   --col-dark: #777;
   --width-section: 768px;
-  --width-banner: 1180px;
-  --width-page: 1280px;
+  --width-banner: 1380px;
+  --width-page: 1380px;
   --width-mobile: 520px;
   --width-breakout: 1024px;
   --spacing-level-1: 6em;
@@ -63,6 +63,7 @@ main {
     @apply font-bold;
   }
   > p,
+  > date,
   > h2,
   > h3,
   > h4,

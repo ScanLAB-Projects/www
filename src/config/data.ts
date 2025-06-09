@@ -17,7 +17,7 @@ export default {
     "rhythms-around-us",
     "framerate",
     "felixs-room",
-    "epfl",
+    "eplf",
     "lost-treasures-of-maya",
     "pistol",
     "eternal-return",

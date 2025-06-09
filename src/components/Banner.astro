@@ -15,7 +15,7 @@ const { slug, tags = [], title, client, src } = Astro.props;
 <a href={`/projects/${slug}`} class="banner" data-tags={`${tags}`}>
   <div class="meta @container">
     <div class="frame flex flex-col gap-0 @lg:gap-2">
-      <h2 class="text-xl @sm:text-2xl @lg:text-3xl @xl:text-4xl font-bold">
+      <h2 class="text-xl @lg:text-3xl @4xl:text-5xl font-bold">
         {title}
       </h2>
       <h3 class="text-lg @xl:text-2xl font-light">{client}</h3>
@@ -101,7 +101,7 @@ const { slug, tags = [], title, client, src } = Astro.props;
   .banner:hover img {
     filter: brightness(0.5);
   }
-  .banner:nth-child(n + 5) {
+  .banner:nth-child(n + 6) {
     font-size: 0.7em;
     width: 100%;
     flex: 0 0 calc(50% - (0.725 * var(--spacing-level-5)));
