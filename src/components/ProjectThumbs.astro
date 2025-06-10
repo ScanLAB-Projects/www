@@ -23,7 +23,7 @@ const meta = orderedProjects.map(({ slug, data }) => ({ ...data, slug }));
 const banners = await orderedProjects.map(getImageData);
 
 async function getImageData({ slug }: CollectionEntry<"projects">) {
-  return await images[`/src/assets/${slug}/banner.jpg`]();
+  return await images[`/src/assets/projects/${slug}/banner.jpg`]();
 }
 ---
 
