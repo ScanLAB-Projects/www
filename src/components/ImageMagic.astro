@@ -11,13 +11,13 @@ interface Props {
 const { href, alt, caption } = Astro.props;
 const slug = Astro.params.slug;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+  "/src/assets/projects/**/*.{jpeg,jpg,png,gif}"
 );
 
-const source = await images[`/src/assets/${slug}/${href}`];
+const source = await images[`/src/assets/projects/${slug}/${href}`];
 if (!source)
   throw new Error(
-    `"${source}" does not exist in glob: "/src/assets/**/*.{jpeg,jpg,png,gif}"`
+    `"${source}" does not exist in glob: "/src/assets/projects/**/*.{jpeg,jpg,png,gif}"`
   );
 ---
 
