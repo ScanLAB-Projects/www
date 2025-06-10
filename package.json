@@ -1,7 +1,7 @@
 {
   "name": "scanlabprojects",
   "type": "module",
-  "version": "5.0.10",
+  "version": "5.0.11",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
