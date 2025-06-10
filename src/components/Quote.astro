@@ -9,12 +9,12 @@ const { label, cite, center = true, contain = false } = Astro.props;
 ---
 
 <figure
-  class=`quote py-16 ${center ? ' is-center' : ''}${contain ? ' has-contain' : ''}`
+  class=`quote py-12 ${center ? ' is-center' : ''}${contain ? ' has-contain' : ''}`
 >
   {label && <q>{label}</q>}
   {
     !label && (
-      <div class="slot-wrap">
+      <div class="slot-wrap flex flex-col gap-8 font-semibold">
         <slot />
       </div>
     )
@@ -27,8 +27,10 @@ const { label, cite, center = true, contain = false } = Astro.props;
     border-top: 1px solid rgba(0, 0, 0, 0.25);
   }
   :global(q) {
-    font-weight: bold;
     font-size: 1.3em;
+    p {
+      font-style: italic;
+    }
     @media (max-width: 600px) {
       font-size: 1em;
     }
@@ -37,7 +39,7 @@ const { label, cite, center = true, contain = false } = Astro.props;
     color: var(--col-dark);
     width: 100%;
     margin: 0 auto;
-    max-width: var(--width-page);
+    max-width: var(--width-quote);
     &.is-center {
       display: grid;
       place-content: center;
@@ -45,17 +47,22 @@ const { label, cite, center = true, contain = false } = Astro.props;
     &.has-contain {
       max-width: var(--width-section);
     }
-    @media (max-width: 1024px) {
-      padding-left: 1.5em;
-      padding-right: 1.5em;
+    @media (max-width: 1280px) {
+      padding-left: 2em;
+      padding-right: 2em;
     }
   }
   q {
     text-align: center;
   }
+
   .slot-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+    q:before,
+    q:after {
+      display: none;
+      font-size: 1em;
+      line-height: 0;
+      vertical-align: middle;
+    }
   }
 </style>

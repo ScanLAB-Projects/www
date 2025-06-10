@@ -7,6 +7,7 @@
   --col-dark: #777;
   --width-section: 768px;
   --width-banner: 1380px;
+  --width-quote: 1180px;
   --width-page: 1380px;
   --width-mobile: 520px;
   --width-breakout: 1024px;
@@ -63,6 +64,7 @@ main {
     @apply font-bold;
   }
   > p,
+  > small,
   > date,
   > h2,
   > h3,
