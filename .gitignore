@@ -4,9 +4,12 @@
 dist
 node_modules
 
-TEMP
 public/fonts/_raw
 public/media
+public/clients
+public/css
+public/assets
+public/pages
 
 src/pages/adult-children
 src/pages/ancient-invisible-cities
