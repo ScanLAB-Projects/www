@@ -12,7 +12,11 @@ type Props = {
 const { slug, tags = [], title, client, src } = Astro.props;
 ---
 
-<a href={`/projects/${slug}`} class="banner" data-tags={`${tags}`}>
+<a
+  href={`/projects/${slug}`}
+  class="banner cursor-pointer"
+  data-tags={`${tags}`}
+>
   <div class="meta @container">
     <div class="frame flex flex-col gap-0 @lg:gap-2">
       <h2 class="text-xl @lg:text-3xl @4xl:text-5xl font-bold">
