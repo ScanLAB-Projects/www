@@ -1,0 +1,37 @@
+---
+import Heading from "$lib/components/Heading.astro";
+import ExhibitionCard from "$lib/components/ExhibitionCard.astro";
+---
+
+<section class="flex flex-col gap-12 md:gap-16 items-center">
+  <Heading>Current Exhibitions</Heading>
+  <ExhibitionCard
+    active={true}
+    dates="23rd - 1st May"
+    project="rhythms-around-us"
+    tickets="https://google.com"
+    title="FRAMERATE: Rhythms Around Us "
+    client="Tribeca Film Festival"
+    venue="Mercer Labs, New York"
+    cite="Five stars; all around you at all times - A someone"
+    description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+  />
+  <!-- <ExhibitionCard
+      dates="23rd - 1st May"
+      project="rhythms-around-us"
+      tickets="https://google.com"
+      title="Exhib A"
+      client="Tribeca Film Festival"
+      venue="Mercer Labs, New York"
+      description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+    />
+    <ExhibitionCard
+      dates="23rd - 1st May"
+      project="rhythms-around-us"
+      tickets="https://google.com"
+      title="Exhib A"
+      client="Tribeca Film Festival"
+      venue="Mercer Labs, New York"
+      description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
+    /> -->
+</section>
