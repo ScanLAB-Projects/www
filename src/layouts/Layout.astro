@@ -84,6 +84,11 @@ const {
   html.is-static {
     overflow-y: hidden;
   }
+  html[mobile="true"] {
+    footer {
+      display: none;
+    }
+  }
   /* has-hero */
   nav:has(~ header) {
     --nav-hover: var(--col-white);
