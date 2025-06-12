@@ -37,14 +37,11 @@
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
   if (isMobile) {
     // $player.setAttribute("poster", "/assets/skeleton.gif");
-    $player.setAttribute("src", `${s3Media}/mobile/mobile-slp.webm`);
+    $player.setAttribute("src", `${s3Media}/mobile-slp.webm`);
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video", (e) => {
       if (e?.detail)
-        $player.setAttribute(
-          "src",
-          `${s3Media}/mobile/mobile-${e.detail}.webm`
-        );
+        $player.setAttribute("src", `${s3Media}/mobile-${e.detail}.webm`);
     });
   }
   if (!isMobile) {
