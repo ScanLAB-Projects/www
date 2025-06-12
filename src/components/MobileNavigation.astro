@@ -40,7 +40,7 @@ selected.forEach((p) => console.log(p.slug));
   }
 </div>
 
-<script defer>
+<script is:inline>
   const el = document.getElementById("MobileScroller");
   if (document.documentElement.getAttribute("mobile"))
     el?.classList.remove("hidden");
