@@ -17,6 +17,13 @@ const { Content } = (await mdx?.render()) || { Content: "" };
 const { title, vimeo, client, tags, background, description, date } =
   Astro.props;
 const image = background ? `${slug}/${background}` : null;
+let hero;
+if (image) {
+  const bgs = import.meta.glob<{ default: ImageMetadata }>(
+    `/src/assets/projects/**/*.jpg`
+  );
+  hero = await bgs[`/src/assets/projects/${image}`]();
+}
 ---
 
 <Layout dark={false} {title} {slug} {description}>
@@ -25,7 +32,7 @@ const image = background ? `${slug}/${background}` : null;
     {tags}
     {date}
     {vimeo}
-    background={image}
+    background={hero?.default}
     subtitle={client}
   />
   <main>
