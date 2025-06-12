@@ -28,6 +28,7 @@
   }
 </style>
 <script is:inline>
+  const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
   const isMobileQuery = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileQuery.matches;
   const $player = document.getElementById("player");
@@ -40,11 +41,13 @@
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video", (e) => {
       if (e?.detail)
-        $player.setAttribute("src", `/media/mobile/mobile-${e.detail}.webm`);
+        $player.setAttribute(
+          "src",
+          `${s3Media}/mobile/mobile-${e.detail}.webm`
+        );
     });
   }
   if (!isMobile) {
-    const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
     $player.setAttribute("src", `${s3Media}/${randomFeed}.webm`);
     $player.load();
     $player.addEventListener("canplay", (e) => {
