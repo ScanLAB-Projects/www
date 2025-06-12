@@ -1,0 +1,81 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import data from "$lib/config/data";
+type Projects = CollectionEntry<"projects">[];
+
+const projects = (await getCollection("projects")) as Projects;
+const selected = data.order.reduce((accum, target) => {
+  if (accum.length < 5) {
+    const project = projects.find(
+      (p) => p.slug === target
+    ) as CollectionEntry<"projects">;
+    accum.push(project);
+  }
+  return accum;
+}, [] as Projects);
+selected.forEach((p) => console.log(p.slug));
+---
+
+<div
+  id="MobileScroller"
+  class="hidden fixed top-0 left-0 w-[100dvw] h-[100dvh] z-10 overflow-y-scroll"
+>
+  <div data-index="slp" class="mobile-project"></div>
+  {
+    selected.map((project, index) => (
+      <div
+        data-index={index + 1}
+        class="mobile-project grid place-content-center px-4 text-white"
+      >
+        <a
+          class="flex flex-col gap-0 justify-center items-center text-wrap"
+          href={`/projects/${project.slug}`}
+        >
+          <h2 class="text-2xl font-bold">{project.data.title}</h2>
+          <h3 class="text-lg font-light">{project.data.client}</h3>
+        </a>
+      </div>
+    ))
+  }
+</div>
+
+<script defer>
+  const el = document.getElementById("MobileScroller");
+  if (document.documentElement.getAttribute("mobile"))
+    el?.classList.remove("hidden");
+  const targets = document.querySelectorAll(".mobile-project");
+  targets.forEach((el) => {
+    let observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio === 1) {
+            window.dispatchEvent(
+              new CustomEvent("mobile-video", { detail: el.dataset.index })
+            );
+          }
+        });
+      },
+      { threshold: 1 }
+    );
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  #MobileScroller {
+    scroll-snap-type: y mandatory;
+  }
+  .mobile-project {
+    scroll-snap-align: start;
+    width: 100dvw;
+    height: 100dvh;
+    a {
+      max-width: 90dvw;
+      color: white;
+    }
+  }
+  .mobile-project:has(a:hover) {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+</style>
