@@ -1,4 +1,5 @@
 ---
+import MobileNavigation from "$lib/components/MobileNavigation.astro";
 import Layout from "$lib/layouts/Layout.astro";
 import Hero from "$lib/components/Hero.astro";
 import Heading from "$lib/components/Heading.astro";
@@ -18,8 +19,7 @@ const description =
 
 <Layout title="Home - ScanLAB Projects" {description}>
   <Hero heading={description} fullscreen={true} homepage={true}><Video /></Hero>
-
-  <section>
+  <section id="homepage">
     <Heading>Selected Artworks</Heading>
     <div class="selected-works flex flex-col gap-12 md:gap-16">
       <Banner
@@ -45,8 +45,22 @@ const description =
       />
     </div>
   </section>
+  <!-- <div class="fvi m-16 size-32">
+    <div class="w-min">
+      <div class="text-3xl pl-1 font-bold absolute">SLP</div>
+      <div class="line absolute rounded-md bg-black"></div>
+      <div class="crop absolute">
+        <div class="text-3xl pl-1 font-light bg-white">SLP</div>
+      </div>
+    </div>
+  </div> -->
+  <MobileNavigation />
 </Layout>
 <script>
+  if (document.documentElement.getAttribute("mobile")) {
+    const el = document.getElementById("homepage");
+    el?.classList.add("hidden");
+  }
   const bannerTags = document.querySelectorAll(".matt button");
   bannerTags.forEach((el: Element) => {
     el.addEventListener(
@@ -62,6 +76,21 @@ const description =
   });
 </script>
 <style>
+  /* .relative {
+    transform: translate(-50%, -50%);
+  }
+  .crop {
+    height: 0.95em;
+    width: 4em;
+    letter-spacing: 0.15em;
+    overflow-y: hidden;
+  }
+  .line {
+    width: 4.65em;
+    height: 0.125em;
+    transform: translate(0, 0.95em);
+    z-index: 10;
+  } */
   section {
     color: var(--col-dark);
     max-width: var(--width-page);

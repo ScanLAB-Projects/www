@@ -1,21 +1,31 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Heading from "$lib/components/Heading.astro";
 import ExhibitionCard from "$lib/components/ExhibitionCard.astro";
+import { getCollection } from "astro:content";
+type Props = CollectionEntry<"exhibitions">;
+
+const exhibitions = (await getCollection("exhibitions")) as Props[];
+const CURRENT_EXHIBITIONS = exhibitions.filter(
+  ({ data }) => data.showing === "NOW"
+);
 ---
 
 <section class="flex flex-col gap-12 md:gap-16 items-center">
   <Heading>Current Exhibitions</Heading>
-  <ExhibitionCard
-    active={true}
-    dates="23rd - 1st May"
-    project="rhythms-around-us"
-    tickets="https://google.com"
-    title="FRAMERATE: Rhythms Around Us "
-    client="Tribeca Film Festival"
-    venue="Mercer Labs, New York"
-    cite="Five stars; all around you at all times - A someone"
-    description="Rhythms Around Us world premieres as part of Tribeca Immersive created especially for the cutting-edge, brand new media systems at Mercer Labs, New York. "
-  />
+  {
+    CURRENT_EXHIBITIONS.map(({ slug, data }) => (
+      <ExhibitionCard
+        dates={data.dates}
+        project={slug}
+        tickets={data.tickets}
+        title={data.title}
+        client={data.client}
+        venue={data.venue}
+        description={data.description}
+      />
+    ))
+  }
   <!-- <ExhibitionCard
       dates="23rd - 1st May"
       project="rhythms-around-us"

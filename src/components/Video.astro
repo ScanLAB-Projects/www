@@ -4,11 +4,12 @@
 
 <video
   id="player"
-  class="video-js is-disabled"
+  class="video-js"
   loop
   preload="true"
   muted
   autoplay
+  playsinline
 >
   <source class="video-compressed" src="" type="video/webm" />
 </video>
@@ -33,7 +34,10 @@
   const std = document.querySelector(".video-compressed");
   const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
-  if (isMobile) $player.setAttribute("poster", "/assets/skeleton.gif");
+  if (isMobile) {
+    $player.setAttribute("poster", "/assets/skeleton.gif");
+    document.documentElement.setAttribute("mobile", true);
+  }
   if (!isMobile) {
     const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
     std?.setAttribute("src", `${s3Media}/${randomFeed}.webm`);

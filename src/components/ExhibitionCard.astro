@@ -1,17 +1,19 @@
 ---
 import Icon from "./Icon.astro";
 interface Props {
+  showing?: "PAST" | "NOW" | "SOON";
   active?: boolean;
   dates?: string;
   project?: string;
   tickets?: string;
   title?: string;
   client?: string;
-  venue?: string;
-  description?: string;
+  venue?: string[];
+  description?: string[];
   cite?: string;
 }
 const {
+  showing,
   active = false,
   dates,
   cite,
@@ -38,12 +40,12 @@ const {
           md:text-sm
           text-right">
         <h4>{client}</h4>
-        <p>{venue}</p>
+        {venue && venue.map((val) => <p>{val}</p>)}
       </div>
     </div>
   </div>
   <div class="flex flex-col gap-2">
-    <p>{description}</p>
+    {description && description.map((val) => <p>{val}</p>)}
     <p class="italic text-right">{cite}</p>
   </div>
 
