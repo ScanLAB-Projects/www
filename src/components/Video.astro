@@ -31,16 +31,21 @@
   const isMobileQuery = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileQuery.matches;
   const $player = document.getElementById("player");
-  const std = document.querySelector(".video-compressed");
+  // const std = document.querySelector(".video-compressed");
   const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
   if (isMobile) {
-    $player.setAttribute("poster", "/assets/skeleton.gif");
+    // $player.setAttribute("poster", "/assets/skeleton.gif");
+    $player.setAttribute("src", "/media/mobile/mobile-slp.webm");
     document.documentElement.setAttribute("mobile", true);
+    window.addEventListener("mobile-video", (e) => {
+      if (e?.detail)
+        $player.setAttribute("src", `/media/mobile/mobile-${e.detail}.webm`);
+    });
   }
   if (!isMobile) {
     const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
-    std?.setAttribute("src", `${s3Media}/${randomFeed}.webm`);
+    $player.setAttribute("src", `${s3Media}/${randomFeed}.webm`);
     $player.load();
     $player.addEventListener("canplay", (e) => {
       $player.play();
