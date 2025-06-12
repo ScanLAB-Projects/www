@@ -37,7 +37,7 @@
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
   if (isMobile) {
     // $player.setAttribute("poster", "/assets/skeleton.gif");
-    $player.setAttribute("src", "/media/mobile/mobile-slp.webm");
+    $player.setAttribute("src", `${s3Media}/mobile/mobile-slp.webm`);
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video", (e) => {
       if (e?.detail)
