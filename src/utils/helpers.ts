@@ -12,7 +12,6 @@ export async function getVimeoAPIPlayer() {
         clearInterval(wait);
       }
       expire -= 100;
-      console.log(expire);
       if (expire <= 0) rej();
     }, 100);
   });
