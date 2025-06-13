@@ -167,14 +167,6 @@ async function getVimeoAPIPlayer() {
     &.is-fullscreen {
       height: 100dvh;
     }
-    @media (max-width: 640px) {
-      background-position: 50%;
-      background-size: cover;
-      h1,
-      h2 {
-        max-width: 100%;
-      }
-    }
     &[data-project="true"] {
       h1 {
         font-weight: 700;
@@ -189,6 +181,17 @@ async function getVimeoAPIPlayer() {
       h1,h2{
         max-width: 65%;
       }
+    }
+  }
+  @media (max-width: 640px) {
+    header {
+      background-position: 50%;
+      background-size: cover;
+      background-attachment: unset;
+    }
+    h1,
+    h2 {
+      max-width: 100%;
     }
   }
   .heading-detail {
