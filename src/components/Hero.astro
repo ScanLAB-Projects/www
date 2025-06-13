@@ -167,7 +167,7 @@ async function getVimeoAPIPlayer() {
     &.is-fullscreen {
       height: 100dvh;
     }
-    &[mobile="true"] {
+    @media (max-width: 640px) {
       background-position: 50%;
       background-size: cover;
       h1,
