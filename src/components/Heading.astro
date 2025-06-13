@@ -23,4 +23,17 @@
     top: 50%;
     z-index: -1;
   }
+  @media (max-width: 768px) {
+    .strike:before {
+      width: calc(100% - 4em);
+    }
+  }
+  @media (max-width: 640px) {
+    .strike span {
+      padding: 0;
+    }
+    .strike:before {
+      display: none;
+    }
+  }
 </style>
