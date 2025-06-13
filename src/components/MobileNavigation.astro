@@ -50,8 +50,13 @@ const selected = data.order.reduce((accum, target) => {
         entries.forEach((entry) => {
           if (entry.intersectionRatio === 1) {
             window.dispatchEvent(
-              new CustomEvent("mobile-video", { detail: el.dataset.index })
+              new CustomEvent("mobile-video-target", {
+                detail: el.dataset.index,
+              })
             );
+          }
+          if (entry.intersectionRatio !== 1) {
+            window.dispatchEvent(new CustomEvent("mobile-video-clear"));
           }
         });
       },

@@ -1,7 +1,12 @@
 ---
-
+import Icon from "./Icon.astro";
 ---
 
+<div
+  class="absolute grid place-content-center w-full h-full top-0 loading animate-spin text-white"
+>
+  <Icon ctx="loader" size="2" />
+</div>
 <video
   id="player"
   class="video-js"
@@ -13,6 +18,7 @@
 >
   <source class="video-compressed" src="" type="video/webm" />
 </video>
+
 <style>
   h3 {
     position: absolute;
@@ -21,18 +27,24 @@
     color: white;
   }
   video {
+    transition: opacity 0.3s;
     position: relative;
     object-fit: cover;
     height: 100%;
     width: 100%;
+    opacity: 0;
+    &.can-play {
+      opacity: 1;
+    }
   }
 </style>
 <script is:inline>
   const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
-  const isMobileQuery = window.matchMedia("(max-width: 640px)");
-  const isMobile = isMobileQuery.matches;
+  const isMobileMedia = window.matchMedia("(max-width: 640px)");
+  const isMobile = isMobileMedia.matches;
   const $player = document.getElementById("player");
-  // const std = document.querySelector(".video-compressed");
+  $player.volume = 0;
+
   const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
   const randomFeed = feeds[Math.floor(Math.random() * 3)];
   if (isMobile) {
@@ -40,10 +52,18 @@
     const format = isIOS ? "mp4" : "webm";
     // $player.setAttribute("poster", "/assets/skeleton.gif");
     $player.setAttribute("src", `${s3Media}/mobile-slp.${format}`);
+    $player.load();
     document.documentElement.setAttribute("mobile", true);
-    window.addEventListener("mobile-video", (e) => {
+    window.addEventListener("mobile-video-target", (e) => {
+      $player.classList.remove("can-play");
       if (e?.detail)
         $player.setAttribute("src", `${s3Media}/mobile-${e.detail}.${format}`);
+    });
+    $player.addEventListener("canplay", (e) => {
+      $player.classList.add("can-play");
+    });
+    window.addEventListener("mobile-video-clear", (e) => {
+      $player.classList.remove("can-play");
     });
   }
   if (!isMobile) {
@@ -51,10 +71,8 @@
     $player.load();
     $player.addEventListener("canplay", (e) => {
       $player.play();
-      // removeSpinner()
-      // if(cache.$player.classList.contains("is-disabled")) cache.$player.classList.remove("is-disabled")
+      $player.classList.add("can-play");
     });
-    $player.volume = 0;
     window.addEventListener("hero-is-visible", (e) => {
       if (!e.detail) $player.pause();
       if (e.detail) $player.play();
