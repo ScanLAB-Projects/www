@@ -112,7 +112,8 @@ a:after {
   @apply text-white;
   @apply text-xs;
   @apply p-2;
-  @apply px-4;
+  @apply px-2;
+  @apply md:px-4;
   @apply rounded-md;
   @apply backdrop-blur-sm;
 }
