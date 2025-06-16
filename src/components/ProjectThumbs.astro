@@ -40,7 +40,7 @@ async function getImageData({ slug }: CollectionEntry<"projects">) {
     ))
   }
 </section>
-<div class="tags is-footer font-light">
+<div class="tags is-footer font-light hidden md:flex">
   <button class="tag" data-tag="all">All</button>
   {
     data.tags.map((tag) => (
@@ -133,7 +133,6 @@ async function getImageData({ slug }: CollectionEntry<"projects">) {
     max-width: 100%;
     margin: var(--spacing-level-2) auto;
     gap: var(--spacing-level-5);
-    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     z-index: 2;
