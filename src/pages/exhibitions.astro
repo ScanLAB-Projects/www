@@ -9,7 +9,15 @@ type Props = CollectionEntry<"exhibitions">;
 const description =
   "ScanLAB Projects is an award winning creative studio. We specialise in exploring the use of large scale 3D scanning in architecture and the creative industries.";
 
-const exhibitions = (await getCollection("exhibitions")) as Props[];
+function sortByDate(a: Props, b: Props) {
+  const a2 = a.data.to!;
+  const b2 = b.data.to!;
+  var aa = a2.split("/").reverse().join(),
+    bb = b2.split("/").reverse().join();
+  return aa < bb ? -1 : aa > bb ? 1 : 0;
+}
+const collection = (await getCollection("exhibitions")) as Props[];
+const exhibitions = collection.sort(sortByDate).reverse();
 
 const UPCOMING_EXHIBITIONS = exhibitions.filter(
   ({ data }) => data.showing === "SOON"
@@ -25,21 +33,22 @@ const PAST_EXHIBITIONS = exhibitions.filter(
 
 <Layout dark={true} title="Exhibitions - ScanLAB Projects" {description}>
   <main class="px-8">
-    <Heading>Upcoming</Heading>
+    {!!UPCOMING_EXHIBITIONS.length && <Heading>Upcoming</Heading>}
     {
-      UPCOMING_EXHIBITIONS.map(({ slug, data }) => (
-        <ExhibitionCard
-          from={data.from}
-          to={data.to}
-          {slug}
-          tickets={data.tickets}
-          title={data.title}
-          client={data.client}
-          venue={data.venue}
-          location={data.location}
-          description={data.description}
-        />
-      ))
+      !!UPCOMING_EXHIBITIONS.length &&
+        UPCOMING_EXHIBITIONS.map(({ slug, data }) => (
+          <ExhibitionCard
+            from={data.from}
+            to={data.to}
+            {slug}
+            tickets={data.tickets}
+            title={data.title}
+            client={data.client}
+            venue={data.venue}
+            location={data.location}
+            description={data.description}
+          />
+        ))
     }
 
     {!!CURRENT_EXHIBITIONS.length && <Heading>Current</Heading>}
@@ -61,10 +70,10 @@ const PAST_EXHIBITIONS = exhibitions.filter(
         ))
     }
 
-    <section id="table" class="flex flex-col gap-12 md:gap-16 items-center">
+    <div id="table" class="flex flex-col gap-12 md:gap-12 items-center">
       <Heading>Previous</Heading>
-      <div class="flex flex-col gap-2 w-full">
-        <div
+      <div class="flex flex-col gap-8 w-full">
+        <!-- <div
           class="grid grid-cols-8 gap-4 row-gap-4 font-bold text-xs pb-2 mb-4"
         >
           <span class=""></span>
@@ -76,27 +85,27 @@ const PAST_EXHIBITIONS = exhibitions.filter(
 
           <span class=""></span>
           <span class="text-right">Date</span>
-        </div>
+        </div> -->
         {
           PAST_EXHIBITIONS.map(({ slug, data }) => (
-            <div class="grid grid-cols-8 gap-4 font-light text-sm">
-              <div class="flex justify-start items-start text-xs">
+            <div class="grid grid-cols-4 md:grid-cols-7 gap-4 font-light text-xs md:text-sm border-b-2 lg:border-0">
+              {/* <div class="flex justify-start items-start text-xs">
                 <span class="px-1 border rounded">Artwork</span>
-              </div>
-              <span class="col-span-2">{data.title}</span>
+              </div> */}
+              <span class="md:col-span-2">{data.title}</span>
 
-              <span class="text-right col-span-2">
+              <span class="text-right md:col-span-2">
                 {data.venue}
                 {/* {data.venue && data.venue.map((val) => <span>{val} </span>)} */}
               </span>
-              <span class="">{data.location}</span>
-              <span class="text-right col-span-2">{data.to}</span>
-              <span class="" />
+              <span class="md:col-span-2">{data.location}</span>
+              {/* <span class="" /> */}
+              <span class="text-right col-span-1">{data.to}</span>
             </div>
           ))
         }
       </div>
-    </section>
+    </div>
   </main>
 </Layout>
 
