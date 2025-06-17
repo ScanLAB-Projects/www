@@ -1,6 +1,8 @@
 .DS_Store
 .vscode
 .astro
+.csv
+.py
 
 dist
 node_modules
@@ -11,6 +13,7 @@ public/clients
 public/css
 public/assets
 public/pages
+
 
 src/pages/adult-children
 src/pages/ancient-invisible-cities

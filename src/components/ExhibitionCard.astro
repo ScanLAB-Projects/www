@@ -2,26 +2,30 @@
 import Icon from "./Icon.astro";
 interface Props {
   showing?: "PAST" | "NOW" | "SOON";
-  active?: boolean;
-  dates?: string;
-  project?: string;
+  active?: string;
+  from?: string;
+  to?: string;
+  slug?: string;
   tickets?: string;
   title?: string;
   client?: string;
-  venue?: string[];
-  description?: string[];
+  venue?: string;
+  location?: string;
+  description?: string;
   cite?: string;
 }
 const {
   showing,
-  active = true,
-  dates,
+  active,
+  to,
+  from,
   cite,
-  project,
+  slug,
   tickets,
   title,
   client,
   venue,
+  location,
   description,
 } = Astro.props;
 ---
@@ -37,18 +41,26 @@ const {
     <div class="flex flex-col w-[100%] sm:w-[30%] items-end gap-0 sm:gap-2">
       <div class="flex gap-4 items-center text-sm self-start sm:self-end">
         <Icon ctx="calendar" />
-        <span class="text-xs md:text-sm">{dates}</span>
+        <span class="text-xs md:text-sm">{from}</span>
+        <span class="text-xs md:text-sm">{to}</span>
       </div>
       <div class="text-xs
           md:text-sm
           text-right">
-        {venue && venue.map((val) => <p>{val}</p>)}
+        {venue}
+        <!-- {venue && venue.map((val) => <p>{val}</p>)} -->
+      </div>
+      <div class="text-xs
+          md:text-sm
+          text-right">
+        {location}
       </div>
     </div>
   </div>
   <div class="flex flex-col gap-2">
-    {description && description.map((val) => <p>{val}</p>)}
-    <p class="italic text-right">{cite}</p>
+    {description}
+    <!-- {description && description.map((val) => <p>{val}</p>)} -->
+    {cite && <p class="italic text-right">{cite}</p>}
   </div>
 
   <div class="flex items-center justify-between flex-col md:flex-row">
@@ -62,7 +74,7 @@ const {
         </div>
       )
     }
-    <a class="text-sm" href={`/${project}`}
+    <a class="text-sm" href={`/${slug}`}
       ><strong>see here for more information</strong></a
     >
   </div>

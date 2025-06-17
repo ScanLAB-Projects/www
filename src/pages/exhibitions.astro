@@ -29,44 +29,53 @@ const PAST_EXHIBITIONS = exhibitions.filter(
     {
       UPCOMING_EXHIBITIONS.map(({ slug, data }) => (
         <ExhibitionCard
-          dates={data.dates}
-          project={slug}
+          from={data.from}
+          to={data.to}
+          {slug}
           tickets={data.tickets}
           title={data.title}
           client={data.client}
           venue={data.venue}
+          location={data.location}
           description={data.description}
         />
       ))
     }
 
-    <Heading>Current</Heading>
+    {!!CURRENT_EXHIBITIONS.length && <Heading>Current</Heading>}
+
     {
-      CURRENT_EXHIBITIONS.map(({ slug, data }) => (
-        <ExhibitionCard
-          dates={data.dates}
-          project={slug}
-          tickets={data.tickets}
-          title={data.title}
-          client={data.client}
-          venue={data.venue}
-          description={data.description}
-        />
-      ))
+      !!CURRENT_EXHIBITIONS.length &&
+        CURRENT_EXHIBITIONS.map(({ slug, data }) => (
+          <ExhibitionCard
+            from={data.from}
+            to={data.to}
+            {slug}
+            tickets={data.tickets}
+            title={data.title}
+            client={data.client}
+            venue={data.venue}
+            location={data.location}
+            description={data.description}
+          />
+        ))
     }
 
     <section id="table" class="flex flex-col gap-12 md:gap-16 items-center">
       <Heading>Previous</Heading>
       <div class="flex flex-col gap-2 w-full">
-        <div class="grid grid-cols-8 row-gap-4 font-bold text-xs pb-2 mb-4">
+        <div
+          class="grid grid-cols-8 gap-4 row-gap-4 font-bold text-xs pb-2 mb-4"
+        >
           <span class=""></span>
           <span class="col-span-2">Event</span>
 
-          <span class="text-right col-span-2">Venue</span>
           <span class=""></span>
+          <span class="text-right">Venue</span>
+          <span class="">Location</span>
 
-          <span class="text-right col-span-2">Date</span>
           <span class=""></span>
+          <span class="text-right">Date</span>
         </div>
         {
           PAST_EXHIBITIONS.map(({ slug, data }) => (
@@ -77,10 +86,11 @@ const PAST_EXHIBITIONS = exhibitions.filter(
               <span class="col-span-2">{data.title}</span>
 
               <span class="text-right col-span-2">
-                {data.venue && data.venue.map((val) => <span>{val} </span>)}
+                {data.venue}
+                {/* {data.venue && data.venue.map((val) => <span>{val} </span>)} */}
               </span>
-              <span class="" />
-              <span class="text-right col-span-2">{data.dates}</span>
+              <span class="">{data.location}</span>
+              <span class="text-right col-span-2">{data.to}</span>
               <span class="" />
             </div>
           ))
