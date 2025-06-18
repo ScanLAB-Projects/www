@@ -21,6 +21,9 @@ jobs:
         with:
           version: 9.9.0
 
+      - name: Install python dependencies
+        run: python3 -m pip install pyyaml
+
       - name: Install dependencies
         run: pnpm install
 
