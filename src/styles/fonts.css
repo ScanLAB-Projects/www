@@ -1,19 +1,28 @@
 @font-face {
   font-family: "Geist";
-  src: url("/Geist-variable.woff2") format("woff2");
+  src: url("/fonts/Geist-variable.woff2") format("woff2");
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/Monserrat-variable.woff2") format("woff2"),
-    url("/Monserrat-italic-variable.woff2") format("woff2");
+  src: url("/fonts/Monserrat-variable.woff2") format("woff2"),
+    url("/fonts/Monserrat-italic-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url("/assets/font/Proximanova-Light.woff2") format("woff2"),
+    url("/assets/font/Proximanova-Regular.woff2") format("woff2"),
+    url("/assets/font/Proximanova-Semibold.woff2") format("woff2");
 }
 
 :root {
   --font-geist: "Geist", Helvetica, Aria, sans-serif;
   --font-monserrat: "Monserrat", Helvetica, Aria, sans-serif;
+  --font-proximanova: "ProximaNova", Helvetica, Aria, sans-serif;
 }
 
 @theme {
-  --font-primary: var(--font-monserrat);
+  --font-primary: var(--font-proximanova);
+  /* --font-primary: var(--font-monserrat); */
   --font-secondary: var(--font-geist);
 }
