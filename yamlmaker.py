@@ -21,7 +21,7 @@ with open(input_csv, newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for idx, row in enumerate(reader, start=1):
         slug = row.get("slug", "").strip()
-        date_to = row.get("to", "").strip()
+        date_to = row.get("date", "").strip()
         date_obj = datetime.strptime(date_to, "%d/%m/%Y")
         formatted_date = date_obj.strftime("%Y-%m-%d")
         date_prefix = kebab_case(formatted_date) if date_to else ""
