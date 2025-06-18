@@ -31,7 +31,7 @@ const {
 ---
 
 <article class="flex flex-col font-light max-w-3xl gap-6 w-[100%] px-8">
-  <div class="flex flex-col-reverse sm:flex-row justify-between gap-4">
+  <div class="flex flex-col sm:flex-row justify-between gap-4">
     <div class="flex flex-col">
       <h3 class="text-2xl font-bold shrink-1">
         <a class="border-b-2" href={`/${slug}`}>{title}</a>
@@ -39,10 +39,16 @@ const {
       </h3>
       <h4>{client}</h4>
     </div>
-    <div class="flex flex-col w-[100%] sm:w-[30%] items-end gap-0 sm:gap-2">
-      <div class="flex gap-4 items-center text-sm self-start sm:self-end">
-        <Icon ctx="calendar" />
-        <span class="text-xs md:text-sm">{from}</span>
+    <div
+      class="flex flex-col-reverse sm:flex-col w-[100%] sm:w-[30%] items-end gap-0 sm:gap-2"
+    >
+      <div
+        class="flex sm:flex-col md:flex-row gap-4 sm:gap-0 md:gap-4 pt-2 sm:pt-0 w-[100%] justify-between items-end text-sm self-start sm:self-end"
+      >
+        <div class="flex gap-2 items-center">
+          <Icon ctx="calendar" />
+          <span class="text-xs md:text-sm">{from}</span>
+        </div>
         <span class="text-xs md:text-sm">{to}</span>
       </div>
       <div class="text-xs
@@ -70,7 +76,7 @@ const {
         <div class="flex items-center gap-4 rounded-md">
           <Icon ctx="credit-card" />
           <a href={tickets}>
-            <strong>Book your tickets</strong>
+            <strong>Book tickets</strong>
           </a>
         </div>
       </div>

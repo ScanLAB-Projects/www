@@ -2,7 +2,6 @@
 .vscode
 .astro
 .csv
-.py
 
 dist
 node_modules
@@ -14,6 +13,7 @@ public/css
 public/assets
 public/pages
 
+src/content/exhibitions
 
 src/pages/adult-children
 src/pages/ancient-invisible-cities

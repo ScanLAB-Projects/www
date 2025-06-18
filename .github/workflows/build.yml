@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Get Exhibition data
+        run: pnpm get-csv-data
+
+      - name: Generate Exhibition MDX
+        run: pnpm build-xib-data
+
       - name: Build project
         run: pnpm build
 
