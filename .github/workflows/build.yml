@@ -44,4 +44,4 @@ jobs:
           aws-region: eu-west-2
 
       - name: Sync dist to S3
-        run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET }}/
+        run: aws s3 cp dist/ s3://${{ vars.S3_BUCKET }}/ --recursive
