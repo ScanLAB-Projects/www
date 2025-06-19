@@ -10,9 +10,9 @@
 
 @font-face {
   font-family: "ProximaNova";
-  src: url("fonts/Proximanova-Light.woff2") format("woff2"),
-    url("fonts/Proximanova-Regular.woff2") format("woff2"),
-    url("fonts/Proximanova-Semibold.woff2") format("woff2");
+  src: url("/fonts/Proximanova-Light.woff2") format("woff2"),
+    url("/fonts/Proximanova-Regular.woff2") format("woff2"),
+    url("/fonts/Proximanova-Semibold.woff2") format("woff2");
 }
 
 :root {
