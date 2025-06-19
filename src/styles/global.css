@@ -121,7 +121,7 @@ blockquote p {
   width: var(--width-breakout);
   font-size: var(--size-larger);
 }
-main > :not(.img-anchor, #table) {
+main > :not(.img-anchor) {
   @apply px-8;
   @apply md:px-0;
 }
