@@ -11,8 +11,8 @@
 @font-face {
   font-family: "ProximaNova";
   src: url("../assets/fonts/Proximanova-Light.woff2") format("woff2"),
-    url("../assets/fonts/Proximanova-Regular.woff2") format("woff2"),
-    url("../assets/fonts/Proximanova-Semibold.woff2") format("woff2");
+    url("$lib/assets/fonts/Proximanova-Regular.woff2") format("woff2"),
+    url("/src/assets/fonts/Proximanova-Semibold.woff2") format("woff2");
 }
 
 :root {
