@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: "Geist";
   src: url("/fonts/Geist-variable.woff2") format("woff2");
 }
@@ -6,7 +6,7 @@
   font-family: "Montserrat";
   src: url("/fonts/Monserrat-variable.woff2") format("woff2"),
     url("/fonts/Monserrat-italic-variable.woff2") format("woff2");
-}
+} */
 
 @font-face {
   font-family: "ProximaNova";
@@ -16,13 +16,13 @@
 }
 
 :root {
-  --font-geist: "Geist", Helvetica, Aria, sans-serif;
-  --font-monserrat: "Monserrat", Helvetica, Aria, sans-serif;
+  /* --font-geist: "Geist", Helvetica, Aria, sans-serif;
+  --font-monserrat: "Monserrat", Helvetica, Aria, sans-serif; */
   --font-proximanova: "ProximaNova", Helvetica, Aria, sans-serif;
 }
 
 @theme {
   --font-primary: var(--font-proximanova);
   /* --font-primary: var(--font-monserrat); */
-  --font-secondary: var(--font-geist);
+  /* --font-secondary: var(--font-geist); */
 }
