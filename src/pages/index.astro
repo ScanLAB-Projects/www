@@ -1,4 +1,5 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Layout from "$lib/layouts/BaseLayout.astro";
 import MobileNavigation from "$lib/components/MobileNavigation.astro";
 import Hero from "$lib/components/Hero.astro";
@@ -6,13 +7,27 @@ import Heading from "$lib/components/Heading.astro";
 import Banner from "$lib/components/Banner.astro";
 import Video from "$lib/components/Video.astro";
 import { getCollection } from "astro:content";
-import framerateBanner from "$lib/assets/projects/framerate/banner.jpg";
-import felixsBanner from "$lib/assets/projects/felixs-room/banner.jpg";
-import desertBanner from "$lib/assets/projects/desert-pulse/banner.jpg";
-const projects = await getCollection("projects");
-const framerate = projects.find(({ slug }) => slug === "framerate");
-const felix = projects.find(({ slug }) => slug === "felixs-room");
-const desert = projects.find(({ slug }) => slug === "desert-pulse");
+import data from "$lib/config/data";
+type Projects = CollectionEntry<"projects">[];
+const NUM_PROJECTS = 3;
+const projects = (await getCollection("projects")) as Projects;
+const showcase = data.order
+  .slice(0, NUM_PROJECTS)
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter(Boolean);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+);
+
+async function getImageData(slug: string) {
+  return await images[`/src/assets/projects/${slug}/banner.jpg`]();
+}
+
+const banners = await Promise.all(
+  showcase.map((project) => getImageData(project!.slug))
+);
+
 const description =
   "A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events";
 ---
@@ -22,38 +37,21 @@ const description =
   <section id="homepage">
     <Heading>Selected Artworks</Heading>
     <div class="selected-works flex flex-col gap-12 md:gap-16">
-      <Banner
-        slug={framerate?.slug}
-        src={framerateBanner}
-        title={framerate?.data.title}
-        client={framerate?.data.client}
-        tags={framerate?.data.tags}
-      />
-      <Banner
-        slug={felix?.slug}
-        src={felixsBanner}
-        title={felix?.data.title}
-        client={felix?.data.client}
-        tags={felix?.data.tags}
-      />
-      <Banner
-        slug={desert?.slug}
-        src={desertBanner}
-        title={desert?.data.title}
-        client={desert?.data.client}
-        tags={desert?.data.tags}
-      />
+      {
+        showcase.map((project, i) => {
+          return (
+            <Banner
+              slug={project?.slug}
+              src={banners[i].default}
+              title={project?.data.title}
+              client={project?.data.client}
+              tags={project?.data.tags}
+            />
+          );
+        })
+      }
     </div>
   </section>
-  <!-- <div class="fvi m-16 size-32">
-    <div class="w-min">
-      <div class="text-3xl pl-1 font-bold absolute">SLP</div>
-      <div class="line absolute rounded-md bg-black"></div>
-      <div class="crop absolute">
-        <div class="text-3xl pl-1 font-light bg-white">SLP</div>
-      </div>
-    </div>
-  </div> -->
   <MobileNavigation />
 </Layout>
 <script>
@@ -76,21 +74,6 @@ const description =
   });
 </script>
 <style>
-  /* .relative {
-    transform: translate(-50%, -50%);
-  }
-  .crop {
-    height: 0.95em;
-    width: 4em;
-    letter-spacing: 0.15em;
-    overflow-y: hidden;
-  }
-  .line {
-    width: 4.65em;
-    height: 0.125em;
-    transform: translate(0, 0.95em);
-    z-index: 10;
-  } */
   section {
     color: var(--col-dark);
     max-width: var(--width-page);
