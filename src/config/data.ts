@@ -16,9 +16,9 @@ export default {
   order: [
     "desert-pulse",
     "rhythms-around-us",
-    "framerate",
+    "pulse-of-the-earth",
     "felixs-room",
-    "epfl",
+    "replica-real-replica",
     "lost-treasures-of-maya",
     // "pistol",
     "eternal-return",

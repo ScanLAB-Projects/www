@@ -28,6 +28,27 @@ pnpm sync
 _...on doing so the site will build automatically_
 ![](src/assets/readme/changes.jpg)
 
+### Project Order | Filtering
+
+By editing visibility and the order of **slug** in the `src/config/data.ts` file, projects will be respectively available in the projects list.
+
+```js
+order: [
+  "desert-pulse", // position 1
+  "rhythms-around-us",
+  // "framerate", // hidden
+  "felixs-room",
+];
+```
+
+### Mobile video
+
+- Mobile videos are aligned against the first `5` in the Project Order dataset
+- name the video with matching project slug
+- format 2 versions `webm` and `mp4`
+- upload to s3 bucket: `media.scanlabprojects`
+- Portrait dimensions are `720x1280`
+
 ### Trigger a deployment for Exhibition updates
 
 You (specific users) can make EDIT's to the spreadsheet [here](https://docs.google.com/spreadsheets/d/1iJ8XBJGkpWw33kltxKcuTd5X9-txEhHpy4Ldi9RVgdo)
@@ -42,6 +63,8 @@ There are 2 types of pages:
 
 1. Standard pages: `src/pages` type: `.astro`
 2. Project pages: `src/content/projects` type: `.mdx`
+
+> Creating an `.mdx` file will be creating the `slug` for the project.
 
 Both use `HTML`, whereas specifically, the project pages are setup to consume `markdown`.
 
@@ -66,3 +89,7 @@ This is used to match assets and content against respectively.
 
 Place images for `eternal-return` in the corresponding `src/assets/projects/eternal-return` location.
 Images placed here will automatically be reduced during the build step.
+
+### Archive
+
+All Previous projects are publicly available under their original slug.
