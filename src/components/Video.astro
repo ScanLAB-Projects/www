@@ -62,6 +62,7 @@ import Icon from "./Icon.astro";
     });
     $player.addEventListener("canplay", (e) => {
       $player.classList.add("can-play");
+      $player.play();
     });
     window.addEventListener("mobile-video-clear", (e) => {
       $player.classList.remove("can-play");
