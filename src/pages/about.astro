@@ -6,17 +6,15 @@ import Heading from "$lib/components/Heading.astro";
 import TeamCard from "$lib/components/TeamCard.astro";
 import bg from "src/assets/about/about.jpg";
 const description =
-  "ScanLAB Projects is an award winning creative studio. We specialise in exploring the use of large scale 3D scanning in architecture and the creative industries.";
+  "A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events";
 ---
 
 <Layout dark={true} title="About - ScanLAB Projects" {description}>
   <Hero heading={description} background={bg} />
   <main>
-    <h2 class="font-light text-xl">Artist Statement</h2>
     <p>
-      ScanLAB Projects is an artist-led studio exploring the world through
-      machine vision technologies, founded in 2010 by Matt Shaw (b 1983) and
-      William Trossell (b 1985).
+      ScanLAB Projects is an artist-led studio exploring the world through machine vision 
+      technologies, founded in 2010 by Matt Shaw (b 1983) and William Trossell (b 1985).
     </p>
 
     <p>
@@ -73,14 +71,16 @@ const description =
 
     <section class="max-w-3xl">
       <Quote
-        cite="Francesca Panetta - executive editor, virtual reality at the Guardian"
+        cite="Francesca Panetta - Executive Editor, Virtual Reality, The Guardian"
         ><q
           >A joy to work with. Their visual work is stunning, their
-          understanding and treatment of difficult subjects is sensitive.</q
+          understanding and treatment of difficult subjects is sensitive.</q>
+      </Quote>
+      <Quote
+        cite="Marie Stafford - Wunderman Thompson"
         ><q
-          >innovating in a fascinating visual space, trying techniques not seen
-          before</q
-        >
+          >FRAMERATE: Pulse of the Earth is a haunting installation that 
+          provides high-fidelity evidence of humanity’s impact on our fragile world.</q>
       </Quote>
       <Quote cite="Geoff Manaugh - BLDGBLOG"
         ><q
@@ -89,12 +89,9 @@ const description =
           best stunt drivers less than five years later.</q
         ></Quote
       >
-      <Quote cite="Chris Granlund - Executive Producer, BBC History">
-        <q>Spectacular scans ... breath-taking visual impact</q>
-        <q
-          >A brilliant team that never stops innovating and taking you by
-          surprise.</q
-        >
+      <Quote cite="Ana Brzezinska - Immersive Curator, Tribeca Festival">
+        <q>I'm a true admirer of the craftsmanship and the attention to detail 
+            that this studio is famous for.</q>
       </Quote>
     </section>
     <!-- <Quote
