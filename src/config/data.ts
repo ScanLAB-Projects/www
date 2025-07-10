@@ -1,10 +1,10 @@
 export default {
   s3Bucket: "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects",
   tags: [
-    "vr",
-    "installation",
+    // "vr",
+    // "installation",
     "web",
-    "artwork",
+    // "artwork",
     "live",
     "tv",
     "film",

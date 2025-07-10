@@ -1,6 +1,7 @@
 ---
 import { capitalize } from "$lib/utils/helpers";
 import { Image } from "astro:assets";
+import config from "$lib/config/data";
 
 type Props = {
   slug?: string;
@@ -10,12 +11,13 @@ type Props = {
   src?: any;
 };
 const { slug, tags = [], title, client, src } = Astro.props;
+const cleanTags = tags.filter((current) => config.tags.includes(current));
 ---
 
 <a
   href={`/projects/${slug}`}
   class="banner cursor-pointer"
-  data-tags={`${tags}`}
+  data-tags={`${cleanTags}`}
 >
   <div class="meta @container">
     <div class="frame flex flex-col gap-0 @lg:gap-2">
@@ -27,7 +29,7 @@ const { slug, tags = [], title, client, src } = Astro.props;
     <div class="meta-frame">
       <div class="matt flex flex-row gap-2 translate-x-[0]">
         {
-          tags.map((tag: string) => {
+          cleanTags.map((tag: string) => {
             return (
               <button class="tag-label tag-hover" data-use={tag}>
                 {capitalize(tag)}

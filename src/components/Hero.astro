@@ -1,5 +1,6 @@
 ---
 import { capitalize } from '$lib/utils/helpers';
+import config from '$lib/config/data'
 interface Props {
   heading: string;
   subtitle?: string;
@@ -31,6 +32,7 @@ const {
 const fs = fullscreen ? 'is-fullscreen' : ''
 const style = background && background.src ? `background-image: url(${background.src});` : {};
 const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
+const cleanTags = tags.filter((current) => config.tags.includes(current));
 
 ---
 {
@@ -51,8 +53,8 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
           {subtitle && <h2 class="text-md font-light">{subtitle}</h2>}
         </div>
         {
-        !!tags.length && <div class="tags flex flex-row justify-end gap-2">
-            {tags.map((tag) => (
+        !!cleanTags.length && <div class="tags flex flex-row justify-end gap-2">
+            {cleanTags.map((tag) => (
               <div class="tag-label">{capitalize(tag)}</div>
             ))}
           </div>
@@ -71,7 +73,7 @@ const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
           {subtitle && <h2 class="text-sm md:text-lg font-light">{subtitle}</h2>}
         </div>
         <div class="tags flex flex-row justify-end gap-2">
-          {tags.map((tag) => (
+          {cleanTags.map((tag) => (
             <div class="tag-label rounded-md px-2 text-xs flex items-center">{capitalize(tag)}</div>
           ))}
         </div>
