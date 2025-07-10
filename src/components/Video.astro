@@ -58,6 +58,7 @@ import Icon from "./Icon.astro";
       $player.classList.remove("can-play");
       if (e?.detail)
         $player.setAttribute("src", `${s3Media}/mobile-${e.detail}.${format}`);
+      $player.setAttribute("type", `video/${format}`);
     });
     $player.addEventListener("canplay", (e) => {
       $player.classList.add("can-play");
