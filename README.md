@@ -90,6 +90,16 @@ This is used to match assets and content against respectively.
 Place images for `eternal-return` in the corresponding `src/assets/projects/eternal-return` location.
 Images placed here will automatically be reduced during the build step.
 
+### Markdown + MDX HTML Content
+
+**Quotes** - nb. the `center` prop (defaults to true) which will align left or centre respectively.
+
+```html
+<Quote center="{false}" cite="hello, james">
+  <q>Welcome to the jungle welcome to the jungle welcome to the jungle</q>
+</Quote>
+```
+
 ### Archive
 
 All Previous projects are publicly available under their original slug.

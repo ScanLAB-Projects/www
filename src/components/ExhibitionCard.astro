@@ -28,11 +28,16 @@ const {
   location,
   description,
 } = Astro.props;
+
+function removeYear(date?: string) {
+  if (!date) return "";
+  return date.split(" ").slice(0, -1).join(" ");
+}
 ---
 
 <article class="flex flex-col font-light max-w-3xl gap-6 w-[100%] px-8">
-  <div class="flex flex-col sm:flex-row justify-between gap-4">
-    <div class="flex flex-col justify-center">
+  <div class="flex flex-col justify-between gap-4">
+    <div class="flex flex-col justify-start">
       <h3 class="text-lg sm:text-2xl font-bold shrink-1">
         <a class="border-b-2" href={`/${slug}`}>{title}</a>
         <!-- <span class="border-b-2"></span> -->
@@ -40,16 +45,16 @@ const {
       <h4>{client}</h4>
     </div>
     <div
-      class="flex flex-col-reverse sm:flex-col w-[100%] sm:w-[30%] items-end gap-0 sm:gap-2"
+      class="flex flex-col sm:flex-col md:items-end items-start gap-0 sm:gap-2"
     >
       <div
-        class="flex sm:flex-col md:flex-row gap-4 sm:gap-0 md:gap-4 pt-2 sm:pt-0 w-[100%] justify-between items-end text-sm self-start sm:self-end"
+        class="flex md:justify-end md:flex-row pt-2 sm:pt-0 w-[100%] text-sm"
       >
         <div class="flex gap-2 items-center">
           <Icon ctx="calendar" />
-          <span class="text-xs md:text-sm">{from}</span>
+          <span class="text-xs md:text-sm">{removeYear(from)} -</span>
         </div>
-        <span class="text-xs md:text-sm">{to}</span>
+        <span class="text-xs md:text-sm">&nbsp;{to}</span>
       </div>
       <div class="text-xs
           md:text-sm
@@ -69,13 +74,15 @@ const {
     <!-- {description && description.map((val) => <p>{val}</p>)} -->
     {cite && <p class="italic text-right">{cite}</p>}
   </div>
-
   {
-    active && (
-      <div class="flex items-center justify-between flex-col md:flex-row">
+    tickets && (
+      <div class="flex items-center justify-between flex-col md:flex-row text-sm">
         <div class="flex items-center gap-4 rounded-md">
-          <Icon ctx="credit-card" />
-          <a href={tickets}>
+          <a
+            class="btn-secondary border-1 px-2 py-1 rounded-lg flex items-center gap-2"
+            href={tickets}
+          >
+            <Icon ctx="credit-card" />
             <strong>Book tickets</strong>
           </a>
         </div>
@@ -87,6 +94,11 @@ const {
     > -->
 </article>
 <style>
+  .btn-secondary:hover {
+    &:after {
+      width: 0;
+    }
+  }
   article {
     border-bottom: 1px solid #aaa;
   }
