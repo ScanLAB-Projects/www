@@ -23,7 +23,7 @@ const imageData = await getImage({ src: source() });
 let orientation = "landscape";
 if (imageData) {
   orientation =
-    imageData.options.width > imageData.options.height
+    imageData.options.width! > imageData.options.height!
       ? "landscape"
       : "portrait";
 }
