@@ -1,3 +1,9 @@
-<div class="img-anchor flex md:gap-8 xl:mx-8 flex-col md:flex-row">
+<div class="inline-images flex md:gap-8 xl:mx-8 flex-col md:flex-row">
   <slot />
 </div>
+<style>
+  .inline-images {
+    max-width: var(--width-page);
+    flex: 1 1 100%;
+  }
+</style>

@@ -125,6 +125,12 @@ main > :not(.img-anchor) {
   @apply px-8;
   @apply md:px-0;
 }
+
+main > :not(.inline-images) {
+  & > [data-orientation="landscape"] img {
+    min-width: var(--width-page);
+  }
+}
 @media (min-width: 1440px) {
   body {
     font-size: 22px;
