@@ -10,7 +10,7 @@ type Props = {
   src?: any;
 };
 const { slug, tags = [], title, client, src } = Astro.props;
-const cleanTags = []; //tags.filter((current) => config.tags.includes(current));
+const cleanTags: string[] = []; //tags.filter((current) => config.tags.includes(current));
 ---
 
 <a
