@@ -10,8 +10,8 @@ const description =
   "ScanLAB Projects is an award winning creative studio. We specialise in exploring the use of large scale 3D scanning in architecture and the creative industries.";
 
 function sortByDate(a: Props, b: Props) {
-  const a2 = a.data.to!;
-  const b2 = b.data.to!;
+  const a2 = a.data.date!;
+  const b2 = b.data.date!;
   var aa = a2.split("/").reverse().join(),
     bb = b2.split("/").reverse().join();
   return aa < bb ? -1 : aa > bb ? 1 : 0;
@@ -28,7 +28,7 @@ const CURRENT_EXHIBITIONS = exhibitions.filter(
 const PAST_EXHIBITIONS = exhibitions.filter(
   ({ data }) => data.showing === "PAST"
 );
-// order by {id}
+console.log(UPCOMING_EXHIBITIONS);
 ---
 
 <Layout dark={true} title="Exhibitions - ScanLAB Projects" {description}>
@@ -36,11 +36,11 @@ const PAST_EXHIBITIONS = exhibitions.filter(
     {!!UPCOMING_EXHIBITIONS.length && <Heading>Upcoming</Heading>}
     {
       !!UPCOMING_EXHIBITIONS.length &&
-        UPCOMING_EXHIBITIONS.map(({ slug, data }) => (
+        UPCOMING_EXHIBITIONS.map(({ data }) => (
           <ExhibitionCard
             from={data.from}
             to={data.to}
-            {slug}
+            url={data.url}
             tickets={data.tickets}
             title={data.title}
             client={data.client}
@@ -55,11 +55,11 @@ const PAST_EXHIBITIONS = exhibitions.filter(
 
     {
       !!CURRENT_EXHIBITIONS.length &&
-        CURRENT_EXHIBITIONS.map(({ slug, data }) => (
+        CURRENT_EXHIBITIONS.map(({ data }) => (
           <ExhibitionCard
             from={data.from}
             to={data.to}
-            {slug}
+            url={data.url}
             tickets={data.tickets}
             title={data.title}
             client={data.client}
@@ -72,7 +72,7 @@ const PAST_EXHIBITIONS = exhibitions.filter(
 
     <div id="table" class="flex flex-col gap-12 md:gap-12 items-center">
       <Heading>Previous</Heading>
-      <div class="flex flex-col gap-8 w-full">
+      <div class="flex flex-col gap-4 w-full">
         <!-- {
           PAST_EXHIBITIONS.map(({ slug, data }) => (
             <div class="grid grid-cols-4 md:grid-cols-7 gap-4 font-light text-xs md:text-sm border-b-2 lg:border-0 pb-1 md:pb-0">
@@ -86,14 +86,18 @@ const PAST_EXHIBITIONS = exhibitions.filter(
           ))
         } -->
         {
-          PAST_EXHIBITIONS.map(({ slug, data }) => (
+          PAST_EXHIBITIONS.map(({ data }) => (
             <div class="grid grid-cols-5 gap-2 font-light text-xs md:text-sm border-b-2 lg:border-0 pb-1 md:pb-0">
               <span class="col-span-2">{data.title}</span>
               <div class="group col-span-2">
                 <span class="">{data.venue}</span>
                 <span class="">{data.location}</span>
               </div>
-              <span class="text-right">{data.to}</span>
+              <div class="flex gap-2 justify-end">
+                <span class="text-right w-12 xl:w-auto">{data.from} </span>
+                <span class="hidden xl:block">-</span>
+                <span class="text-right w-12 xl:w-auto"> {data.to}</span>
+              </div>
             </div>
           ))
         }

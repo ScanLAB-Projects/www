@@ -11,7 +11,10 @@
           "type": "string"
         },
         "subtitle": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "description": {
           "type": "string"

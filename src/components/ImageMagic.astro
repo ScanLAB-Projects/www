@@ -30,7 +30,9 @@ if (!source)
     />
     {
       caption && (
-        <p class="text-xs font-light px-4 lg:px-0 m-0 mt-1">{caption}</p>
+        <p class="text-xs font-light px-4 lg:px-0 m-0 mt-1 text-center">
+          {caption}
+        </p>
       )
     }
   </div>
@@ -43,5 +45,6 @@ if (!source)
     width: 100%;
     max-height: 80vh;
     object-fit: contain;
+    max-width: var(--width-page);
   }
 </style>

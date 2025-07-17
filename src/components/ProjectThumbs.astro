@@ -40,7 +40,7 @@ async function getImageData({ slug }: CollectionEntry<"projects">) {
     ))
   }
 </section>
-<div class="tags is-footer font-light hidden md:flex">
+<!-- <div class="tags is-footer font-light hidden md:flex">
   <button class="tag" data-tag="all">All</button>
   {
     data.tags.map((tag) => (
@@ -49,8 +49,8 @@ async function getImageData({ slug }: CollectionEntry<"projects">) {
       </button>
     ))
   }
-</div>
-<script>
+</div> -->
+<!-- <script>
   import data from "$lib/config/data";
   type BannerTags = {
     el: HTMLElement;
@@ -106,7 +106,7 @@ async function getImageData({ slug }: CollectionEntry<"projects">) {
   const validTag =
     data.tags.includes(params?.tag || "") && params.tag.toUpperCase();
   if (validTag) filterTags(validTag);
-</script>
+</script> -->
 <style>
   .banner.hide {
     display: none;

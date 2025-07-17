@@ -9,7 +9,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync": "npm version patch && git push",
-    "gen": "node ./fastum.js",
     "get-csv-data": "curl -L -o xib.csv https://docs.google.com/spreadsheets/d/1iJ8XBJGkpWw33kltxKcuTd5X9-txEhHpy4Ldi9RVgdo/export?format=csv&gid=0",
     "build-xib-data": "python3 yamlmaker.py",
     "svg": "pnpm dlx svg-symbol-sprite -i ./src/assets/icons -o ./public/sprites.svg",

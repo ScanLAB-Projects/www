@@ -1,9 +1,11 @@
 ---
 import { capitalize } from '$lib/utils/helpers';
 import config from '$lib/config/data'
+import { map } from 'astro:schema';
 interface Props {
   heading: string;
-  subtitle?: string;
+  client?: string;
+  subtitle?: string[];
   background?: any | null;
   link?: {
     label?: string;
@@ -23,7 +25,8 @@ const {
   homepage = false,
   projectpage = false,
   background,
-  subtitle = "",
+  client,
+  subtitle = [],
   link,
   fullscreen = false,
   date,
@@ -32,14 +35,15 @@ const {
 const fs = fullscreen ? 'is-fullscreen' : ''
 const style = background && background.src ? `background-image: url(${background.src});` : {};
 const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
-const cleanTags = tags.filter((current) => config.tags.includes(current));
+const cleanTags = []// tags.filter((current) => config.tags.includes(current));
 
 ---
+<>
 {
   homepage && 
     <header {style} data-homepage class={`relative ${fs}`}>
       <slot />
-        <div class="title absolute bottom-24 px-4 md:px-16 heading-detail is-disabled">
+        <div class="title absolute bottom-24 px-4 md:px-16 hidden md:block">
           <h1 class="text-lg md:text-3xl font-light">{heading}</h1>
         </div>
     </header>
@@ -48,17 +52,18 @@ const cleanTags = tags.filter((current) => config.tags.includes(current));
   !video && background &&
     <header {style} data-project={projectpage} class="relative">
       <div class="flex flex-col heading-detail px-2">
-        <div class="title flex flex-col gap-1">
+        <div class="title flex flex-col gap-1 text-white">
           <h1 class="text-xl md:text-4xl">{heading}</h1>
-          {subtitle && <h2 class="text-md font-light">{subtitle}</h2>}
+          {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
+          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light">{para}</p>)}
         </div>
-        {
+        {/* {
         !!cleanTags.length && <div class="tags flex flex-row justify-end gap-2">
             {cleanTags.map((tag) => (
               <div class="tag-label">{capitalize(tag)}</div>
             ))}
           </div>
-        }
+        } */}
       </div>
     </header>
 }
@@ -68,19 +73,21 @@ const cleanTags = tags.filter((current) => config.tags.includes(current));
     <header {style} class="relative" data-project={projectpage}>
       <iframe id="vimeo" src={video} />
       <div class="flex flex-col heading-detail gap-8 md:gap-0">
-        <div class="title flex flex-col gap-1">
+        <div class="title flex flex-col gap-1 text-white">
           <h1 class="text-xl md:text-4xl">{heading}</h1>
-          {subtitle && <h2 class="text-sm md:text-lg font-light">{subtitle}</h2>}
+          {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
+          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light">{para}</p>)}
         </div>
-        <div class="tags flex flex-row justify-end gap-2">
+        {/* <div class="tags flex flex-row justify-end gap-2">
           {cleanTags.map((tag) => (
             <div class="tag-label rounded-md px-2 text-xs flex items-center">{capitalize(tag)}</div>
           ))}
-        </div>
+        </div> */}
       </div>
     </header>
   )
 }
+</>
 <script is:inline>
   const isMobileQuery = window.matchMedia("(max-width: 640px)");
   const [$header] = document.getElementsByTagName('header')
@@ -164,7 +171,7 @@ async function getVimeoAPIPlayer() {
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    background-size: auto 80%;
+    /* background-size: auto 100%; */
     background-attachment: fixed;
     &.is-fullscreen {
       height: 100dvh;
@@ -182,7 +189,7 @@ async function getVimeoAPIPlayer() {
     }
     @media (min-width: 1080px) {
       h1,h2{
-        max-width: 50%;
+        max-width: 75%;
       }
     }
   }
@@ -199,7 +206,7 @@ async function getVimeoAPIPlayer() {
   }
   .heading-detail {
     position: absolute;
-    width: calc(100% - (2 * var(--spacing-level-4)));
+    width: calc(100% - (4 * var(--spacing-level-4)));
     bottom: var(--spacing-level-2);
     left: var(--spacing-level-2);
     transition: opacity 1s ease-out;

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const slug = Astro.params.slug;
 const mdx = await getEntry("projects", slug);
 const { Content } = (await mdx?.render()) || { Content: "" };
-const { title, vimeo, client, tags, background, description, date } =
+const { title, vimeo, client, subtitle, tags, background, description, date } =
   Astro.props;
 const image = background ? `${slug}/${background}` : null;
 let hero;
@@ -34,7 +34,8 @@ if (image) {
     {date}
     {vimeo}
     background={hero?.default}
-    subtitle={client}
+    {client}
+    {subtitle}
   />
   <main>
     <!-- {

@@ -1,7 +1,6 @@
 ---
 import { capitalize } from "$lib/utils/helpers";
 import { Image } from "astro:assets";
-import config from "$lib/config/data";
 
 type Props = {
   slug?: string;
@@ -11,7 +10,7 @@ type Props = {
   src?: any;
 };
 const { slug, tags = [], title, client, src } = Astro.props;
-const cleanTags = tags.filter((current) => config.tags.includes(current));
+const cleanTags = []; //tags.filter((current) => config.tags.includes(current));
 ---
 
 <a
