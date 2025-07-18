@@ -56,7 +56,7 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
         <div class="title flex flex-col gap-1 text-white">
           <h1 class="text-xl md:text-3xl">{heading}</h1>
           {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
-          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light">{para}</p>)}
+          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light xl:max-w-[60%]">{para}</p>)}
         </div>
         {/* {
         !!cleanTags.length && <div class="tags flex flex-row justify-end gap-2">
@@ -79,7 +79,7 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
         <div class="title flex flex-col gap-1 text-white">
           <h1 class="text-xl md:text-4xl">{heading}</h1>
           {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
-          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light">{para}</p>)}
+          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light xl:max-w-[60%]">{para}</p>)}
         </div>
         {/* <div class="tags flex flex-row justify-end gap-2">
           {cleanTags.map((tag) => (

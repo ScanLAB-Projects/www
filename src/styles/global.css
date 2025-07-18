@@ -108,6 +108,7 @@ a:after {
   background: currentColor;
   left: 0;
   top: 100%;
+  @apply rounded-md;
 }
 .tag-label {
   @apply text-white;
