@@ -74,11 +74,11 @@ Project pages also **require** `frontmatter`, a `YAML` syntax to define higher l
 ---
 title: "Page title"
 client: ""
-subtitle: "currently unused"
+subtitle: ["Extra project page paragraphs", "Use comma seperated for new lines"]
 description: "SEO short page descriptor"
 vimeo: "643973859"
 background: "filename.jpg" # fallback used when no video is present
-tags: ["artwork", "installation"]
+tags: ["artwork", "installation"] # deprecated
 ---
 ```
 
@@ -92,12 +92,22 @@ Images placed here will automatically be reduced during the build step.
 
 ### Markdown + MDX HTML Content
 
+> don't forget that these components need importing (on page script) to be used - copy existing examples
+
 **Quotes** - nb. the `center` prop (defaults to true) which will align left or centre respectively.
 
 ```html
 <Quote center="{false}" cite="hello, james">
   <q>Welcome to the jungle welcome to the jungle welcome to the jungle</q>
 </Quote>
+```
+
+**Whitespace** adds block whitespace as needed for custom formatting.
+
+Available props: `sm` | `md` | `lg` | `xl` | `2xl` | `3xl`
+
+```html
+<Whitespace size="lg" />
 ```
 
 ### Archive
