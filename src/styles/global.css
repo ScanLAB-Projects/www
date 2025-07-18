@@ -71,7 +71,8 @@ main {
   > h3,
   > h4,
   > h5 {
-    @apply font-light;
+    font-weight: 200;
+    /* @apply font-light; */
     margin: 0 auto;
     width: var(--width-section);
     max-width: 100%;
@@ -129,6 +130,11 @@ main > :not(.img-anchor, .inline-images) {
 main > :not(.inline-images) {
   & > [data-orientation="landscape"] img {
     min-width: var(--width-page);
+  }
+}
+@media (min-width: 1640px) {
+  body {
+    font-size: 26px;
   }
 }
 @media (min-width: 1440px) {
