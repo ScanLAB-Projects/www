@@ -6,7 +6,7 @@ interface Props {
 const { title, role } = Astro.props;
 ---
 
-<div class="card flex flex-col md:gap-4 font-light">
+<div class="card flex flex-col md:gap-4">
   <header>
     <h4>{title}</h4>
     <h5 class="text-sm">{role}</h5>
@@ -16,5 +16,8 @@ const { title, role } = Astro.props;
 <style>
   h5 {
     font-size: 0.8em;
+  }
+  .card {
+    font-weight: 200;
   }
 </style>
