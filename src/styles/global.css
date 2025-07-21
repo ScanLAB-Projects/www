@@ -139,7 +139,7 @@ main > :not(.img-anchor, .inline-images) {
 
 @media (min-width: 1640px) {
   body {
-    font-size: 26px;
+    font-size: 28px;
   }
 }
 @media (min-width: 1440px) {

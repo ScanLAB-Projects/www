@@ -45,7 +45,7 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
     <header {style} data-homepage class={`relative ${fs}`}>
       <slot />
         <div class="title absolute bottom-18 px-4 md:px-16 hidden md:block">
-          <h1 class="text-lg md:text-3xl">{heading}</h1>
+          <h1 class="text-lg md:text-3xl 2xl:text-4xl">{heading}</h1>
         </div>
     </header>
 }
@@ -54,7 +54,7 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
     <header {style} data-project={projectpage} class="relative">
       <div class="flex flex-col heading-detail">
         <div class="title flex flex-col gap-1 text-white">
-          <h1 class="text-xl md:text-3xl">{heading}</h1>
+          <h1 class="text-xl md:text-3xl 2xl:text-4xl">{heading}</h1>
           {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
           {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light xl:max-w-[60%]">{para}</p>)}
         </div>
@@ -77,9 +77,9 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
       </div>
       <div class="flex flex-col heading-detail gap-8 md:gap-0">
         <div class="title flex flex-col gap-1 text-white">
-          <h1 class="text-xl md:text-4xl">{heading}</h1>
-          {client && <h2 class="text-sm md:text-lg font-light">{client}</h2>}
-          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg font-light xl:max-w-[60%]">{para}</p>)}
+          <h1 class="text-xl md:text-3xl 2xl:text-4xl">{heading}</h1>
+          {client && <h2 class="text-sm md:text-lg 2xl:text-xl font-light">{client}</h2>}
+          {!!subtitle.length && subtitle.map((para) => <p class="text-sm md:text-lg 2xl:text-xl font-light xl:max-w-[60%]">{para}</p>)}
         </div>
         {/* <div class="tags flex flex-row justify-end gap-2">
           {cleanTags.map((tag) => (
@@ -198,9 +198,14 @@ async function getVimeoAPIPlayer() {
       text-shadow: 0 0 .25em rgba(0,0,0,.5);
       font-weight: 600;
     }
-    @media (min-width: 1080px) {
+    @media (min-width: 1360px) {
       h1,h2{
         max-width: 60%;
+      }
+    }
+    @media (min-width: 2240px) {
+      h1,h2{
+        width: 47%;
       }
     }
   }

@@ -28,6 +28,10 @@
 :root {
   /* --font-monserrat: "Monserrat", Helvetica, Aria, sans-serif; */
   --font-proximanova: "ProximaNova", Helvetica, Aria, sans-serif;
+  h1,
+  h2 {
+    letter-spacing: 0.08em;
+  }
 }
 
 @theme {
