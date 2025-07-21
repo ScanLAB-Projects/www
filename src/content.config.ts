@@ -11,6 +11,7 @@ const projects = defineCollection({
     vimeo: z.string().optional(),
     background: z.string().optional(),
     date: z.string().optional(),
+    mobile: z.string().optional(),
   }),
 });
 

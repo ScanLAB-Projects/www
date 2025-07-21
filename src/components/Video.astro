@@ -5,8 +5,9 @@ import Icon from "./Icon.astro";
 <div
   class="absolute grid place-content-center w-[100%] h-full top-0 loading animate-spin text-white"
 >
-  <Icon ctx="loader" size="2" />
+  <Icon ctx="loader" size="1.5" />
 </div>
+<!-- <img src="" class="fallback hidden"/> -->
 <video
   id="player"
   class="video-js"
@@ -43,6 +44,7 @@ import Icon from "./Icon.astro";
   const isMobileMedia = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileMedia.matches;
   const $player = document.getElementById("player");
+
   $player.volume = 0;
 
   const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
@@ -50,15 +52,22 @@ import Icon from "./Icon.astro";
   if (isMobile) {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const format = isIOS ? "mp4" : "webm";
-    // $player.setAttribute("poster", "/assets/skeleton.gif");
+
     $player.setAttribute("src", `${s3Media}/mobile-slp.${format}`);
     $player.load();
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video-target", (e) => {
+      const target = e.detail.mobile?.includes(".") ? "IMAGE" : "VIDEO";
       $player.classList.remove("can-play");
-      if (e?.detail)
-        $player.setAttribute("src", `${s3Media}/mobile-${e.detail}.${format}`);
-      $player.setAttribute("type", `video/${format}`);
+      if (target === "IMAGE") {
+        $player.setAttribute("src", "");
+        $player.classList.add("can-play");
+        $player.setAttribute("poster", `/assets/${e.detail.mobile}`);
+      } else {
+        let filename = e.detail.index === "slp" ? "slp" : e.detail.mobile;
+        $player.setAttribute("src", `${s3Media}/mobile-${filename}.${format}`);
+        $player.setAttribute("type", `video/${format}`);
+      }
     });
     $player.addEventListener("canplay", (e) => {
       $player.classList.add("can-play");

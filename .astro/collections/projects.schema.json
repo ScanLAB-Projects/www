@@ -37,6 +37,9 @@
         "date": {
           "type": "string"
         },
+        "mobile": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

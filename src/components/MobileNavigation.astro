@@ -2,11 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import data from "$lib/config/data";
+import Icon from "./Icon.astro";
 type Projects = CollectionEntry<"projects">[];
-
+const NUM_PROJECTS = 5;
 const projects = (await getCollection("projects")) as Projects;
 const selected = data.order.reduce((accum, target) => {
-  if (accum.length < 5) {
+  if (accum.length < NUM_PROJECTS) {
     const project = projects.find(
       (p) => p.slug === target
     ) as CollectionEntry<"projects">;
@@ -19,54 +20,83 @@ const selected = data.order.reduce((accum, target) => {
 <div
   id="MobileScroller"
   class="hidden fixed top-0 left-0 w-[100dvw] h-[100dvh] z-10 overflow-y-scroll"
+  data-home="true"
 >
-  <div data-index="slp" class="mobile-project"></div>
+  <div data-index="slp" data-image="false" class="mobile-project"></div>
   {
     selected.map((project, index) => (
       <div
         data-index={index + 1}
+        data-image={project.data?.mobile || "false"}
         class="mobile-project grid place-content-center px-4 text-white"
       >
         <a
-          class="flex flex-col gap-0 justify-center items-center text-wrap"
+          class="flex flex-col gap-0 justify-center items-start text-wrap"
           href={`/projects/${project.slug}`}
         >
-          <h2 class="text-2xl font-bold">{project.data.title}</h2>
-          <h3 class="text-lg font-light">{project.data.client}</h3>
+          <h2 class="text-lg font-bold">{project.data.title}</h2>
+          <h3 class="text-sm font-light">{project.data.client}</h3>
         </a>
       </div>
     ))
   }
+  <!-- <button
+    data-max={NUM_PROJECTS}
+    data-current="DOWN"
+    class="sticky text-white text-2xl bottom-2 toktok"
+  >
+    <Icon ctx="arrow-up-circle" />
+  </button> -->
 </div>
 
 <script is:inline>
-  const el = document.getElementById("MobileScroller");
+  const $el = document.getElementById("MobileScroller");
+  const $next = document.querySelector(".toktok");
+  // $next.addEventListener("click", (e) => {
+  //   window.scrollTo({ top: window.innerHeight + 10, behavior: "smooth" });
+  // });
   if (document.documentElement.getAttribute("mobile"))
-    el?.classList.remove("hidden");
+    $el?.classList.remove("hidden");
   const targets = document.querySelectorAll(".mobile-project");
   targets.forEach((el) => {
+    let options =
+      el.dataset.image !== "false" ? { mobile: el.dataset.image } : {};
     let observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          let home = el.dataset.index === "slp" ? "true" : "false";
           if (entry.intersectionRatio === 1) {
             window.dispatchEvent(
               new CustomEvent("mobile-video-target", {
-                detail: el.dataset.index,
+                detail: { index: el.dataset.index, ...options },
               })
             );
+            $el.dataset.home = home;
+            // $next.dataset.current = $next.dataset.index === 5 ? "UP" : "DOWN";
           }
           if (entry.intersectionRatio !== 1) {
             window.dispatchEvent(new CustomEvent("mobile-video-clear"));
+            $el.dataset.home = false;
           }
         });
       },
       { threshold: 1 }
     );
     observer.observe(el);
+    setTimeout(() => ($el.dataset.home = true), 100);
   });
 </script>
 
 <style>
+  .toktok {
+    left: calc(100% - 2em);
+  }
+  [data-current="DOWN"] {
+    transform: rotate(180deg);
+  }
+  h2 {
+    letter-spacing: normal;
+  }
   #MobileScroller {
     scroll-snap-type: y mandatory;
   }
