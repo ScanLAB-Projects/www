@@ -21,6 +21,7 @@ const selected = data.order.reduce((accum, target) => {
   id="MobileScroller"
   class="hidden fixed top-0 left-0 w-[100dvw] h-[100dvh] z-10 overflow-y-scroll"
   data-home="true"
+  data-current="0"
 >
   <div data-index="slp" data-image="false" class="mobile-project"></div>
   {
@@ -40,18 +41,30 @@ const selected = data.order.reduce((accum, target) => {
       </div>
     ))
   }
-  <!-- <button
+  <button
+    onclick="scrollNext()"
     data-max={NUM_PROJECTS}
     data-current="DOWN"
     class="sticky text-white text-2xl bottom-2 toktok"
   >
     <Icon ctx="arrow-up-circle" />
-  </button> -->
+  </button>
 </div>
 
 <script is:inline>
   const $el = document.getElementById("MobileScroller");
   const $next = document.querySelector(".toktok");
+  function scrollNext() {
+    let i = ~~$el.dataset.current + 1;
+    if (i > 5) i = "slp";
+
+    const target = document.querySelector(`[data-index="${i}"]`);
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }
   // $next.addEventListener("click", (e) => {
   //   window.scrollTo({ top: window.innerHeight + 10, behavior: "smooth" });
   // });
@@ -71,8 +84,11 @@ const selected = data.order.reduce((accum, target) => {
                 detail: { index: el.dataset.index, ...options },
               })
             );
+            $el.dataset.current =
+              el.dataset.index === "slp" ? "0" : el.dataset.index;
             $el.dataset.home = home;
-            // $next.dataset.current = $next.dataset.index === 5 ? "UP" : "DOWN";
+            $next.dataset.current =
+              $el.dataset.current === $next.dataset.max ? "UP" : "DOWN";
           }
           if (entry.intersectionRatio !== 1) {
             window.dispatchEvent(new CustomEvent("mobile-video-clear"));
@@ -90,6 +106,7 @@ const selected = data.order.reduce((accum, target) => {
 <style>
   .toktok {
     left: calc(100% - 2em);
+    transition: transform 0.3s;
   }
   [data-current="DOWN"] {
     transform: rotate(180deg);
