@@ -44,10 +44,11 @@ order: [
 ### Mobile video
 
 - Mobile videos are aligned against the first `5` in the Project Order dataset
-- name the video with matching project slug
-- format 2 versions `webm` and `mp4`
+- name the video with matching project meta `mobile` field
+- format 2 versions `webm` and `mp4` (no need to populate above field with format)
 - upload to s3 bucket: `media.scanlabprojects`
 - Portrait dimensions are `720x1280`
+- **static images** set with `mobile: "static.jpg"` in project meta. These images must be uploaded to repo location: `public/mobile/filename.jpg`
 
 ### Trigger a deployment for Exhibition updates
 
@@ -77,6 +78,7 @@ client: ""
 subtitle: ["Extra project page paragraphs", "Use comma seperated for new lines"]
 description: "SEO short page descriptor"
 vimeo: "643973859"
+mobile: "video-file-name" # "with.jpg" for static
 background: "filename.jpg" # fallback used when no video is present
 tags: ["artwork", "installation"] # deprecated
 ---

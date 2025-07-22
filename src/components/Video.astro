@@ -62,7 +62,7 @@ import Icon from "./Icon.astro";
       if (target === "IMAGE") {
         $player.setAttribute("src", "");
         $player.classList.add("can-play");
-        $player.setAttribute("poster", `/assets/${e.detail.mobile}`);
+        $player.setAttribute("poster", `/mobile/${e.detail.mobile}`);
       } else {
         let filename = e.detail.index === "slp" ? "slp" : e.detail.mobile;
         $player.setAttribute("src", `${s3Media}/mobile-${filename}.${format}`);
