@@ -23,7 +23,7 @@ const selected = data.order.reduce((accum, target) => {
   data-home="true"
   data-current="0"
 >
-  <div data-index="slp" data-image="false" class="mobile-project"></div>
+  <div data-index="0" data-image="false" class="mobile-project"></div>
   {
     selected.map((project, index) => (
       <div
@@ -45,7 +45,7 @@ const selected = data.order.reduce((accum, target) => {
     onclick="scrollNext()"
     data-max={NUM_PROJECTS}
     data-current="DOWN"
-    class="sticky text-white text-2xl bottom-2 toktok"
+    class="sticky text-white text-3xl bottom-2 toktok"
   >
     <Icon ctx="arrow-up-circle" />
   </button>
@@ -56,7 +56,7 @@ const selected = data.order.reduce((accum, target) => {
   const $next = document.querySelector(".toktok");
   function scrollNext() {
     let i = ~~$el.dataset.current + 1;
-    if (i > 5) i = "slp";
+    if (i > 5) i = "0";
 
     const target = document.querySelector(`[data-index="${i}"]`);
     target.scrollIntoView({
@@ -65,9 +65,7 @@ const selected = data.order.reduce((accum, target) => {
       inline: "start",
     });
   }
-  // $next.addEventListener("click", (e) => {
-  //   window.scrollTo({ top: window.innerHeight + 10, behavior: "smooth" });
-  // });
+
   if (document.documentElement.getAttribute("mobile"))
     $el?.classList.remove("hidden");
   const targets = document.querySelectorAll(".mobile-project");
@@ -77,15 +75,14 @@ const selected = data.order.reduce((accum, target) => {
     let observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          let home = el.dataset.index === "slp" ? "true" : "false";
+          let home = el.dataset.index === "0" ? "true" : "false";
           if (entry.intersectionRatio === 1) {
             window.dispatchEvent(
               new CustomEvent("mobile-video-target", {
                 detail: { index: el.dataset.index, ...options },
               })
             );
-            $el.dataset.current =
-              el.dataset.index === "slp" ? "0" : el.dataset.index;
+            $el.dataset.current = el.dataset.index;
             $el.dataset.home = home;
             $next.dataset.current =
               $el.dataset.current === $next.dataset.max ? "UP" : "DOWN";
@@ -105,8 +102,9 @@ const selected = data.order.reduce((accum, target) => {
 
 <style>
   .toktok {
-    left: calc(100% - 2em);
+    left: calc(50% - 0.5em);
     transition: transform 0.3s;
+    bottom: 1em;
   }
   [data-current="DOWN"] {
     transform: rotate(180deg);

@@ -44,7 +44,7 @@ import Icon from "./Icon.astro";
   const isMobileMedia = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileMedia.matches;
   const $player = document.getElementById("player");
-
+  const MOBILE_SHOWREEL = "Showreel_A-v2";
   $player.volume = 0;
 
   const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
@@ -52,9 +52,8 @@ import Icon from "./Icon.astro";
   if (isMobile) {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const format = isIOS ? "mp4" : "webm";
-
-    $player.setAttribute("src", `${s3Media}/Showreel_A-v2.${format}`);
-    $player.load();
+    // $player.setAttribute("src", `${s3Media}/${MOBILE_SHOWREEL}.${format}`);
+    // $player.load();
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video-target", (e) => {
       const target = e.detail.mobile?.includes(".") ? "IMAGE" : "VIDEO";
@@ -64,7 +63,8 @@ import Icon from "./Icon.astro";
         $player.classList.add("can-play");
         $player.setAttribute("poster", `/mobile/${e.detail.mobile}`);
       } else {
-        let filename = e.detail.index === "slp" ? "slp" : e.detail.mobile;
+        let filename =
+          e.detail.index === "0" ? MOBILE_SHOWREEL : e.detail.mobile;
         $player.setAttribute("src", `${s3Media}/mobile-${filename}.${format}`);
         $player.setAttribute("type", `video/${format}`);
       }

@@ -32,6 +32,12 @@
   h2 {
     letter-spacing: 0.08em;
   }
+  @media (max-width: 600px) {
+    h1,
+    h2 {
+      letter-spacing: normal;
+    }
+  }
 }
 
 @theme {
