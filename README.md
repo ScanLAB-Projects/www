@@ -45,6 +45,7 @@ order: [
 
 - Mobile videos are aligned against the first `5` in the Project Order dataset
 - name the video with matching project meta `mobile` field
+- showreel is currently named `mobile-slp`
 - format 2 versions `webm` and `mp4` (no need to populate above field with format)
 - upload to s3 bucket: `media.scanlabprojects`
 - Portrait dimensions are `720x1280`
