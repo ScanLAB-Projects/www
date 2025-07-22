@@ -53,7 +53,7 @@ import Icon from "./Icon.astro";
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const format = isIOS ? "mp4" : "webm";
 
-    $player.setAttribute("src", `${s3Media}/mobile-slp.${format}`);
+    $player.setAttribute("src", `${s3Media}/mobile-Showreel_A-v2.${format}`);
     $player.load();
     document.documentElement.setAttribute("mobile", true);
     window.addEventListener("mobile-video-target", (e) => {
