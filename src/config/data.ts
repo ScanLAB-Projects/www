@@ -14,6 +14,10 @@ export default {
   ],
 
   order: [
+    // "buildings",
+    // "objects",
+    // "landscapes",
+    // "portraits",
     "desert-pulse",
     "rhythms-around-us",
     "pulse-of-the-earth",

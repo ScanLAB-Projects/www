@@ -5,6 +5,11 @@ Getting started.
 
 ## Currently [Staging](http://cicd-staging-scanlab-www.s3-website.eu-west-2.amazonaws.com)
 
+### Going to production
+
+![](src/assets/readme/production.jpg)
+^^ Update this to the `scanlabprojects.co.uk` bucket
+
 - Node `>20`
 - Package manager `pnpm`
 - Requires Git for branch deployments
