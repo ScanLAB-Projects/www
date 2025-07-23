@@ -81,12 +81,14 @@ Project pages also **require** `frontmatter`, a `YAML` syntax to define higher l
 ---
 title: "Page title"
 client: ""
+heading: ["overrides the following on project pages", "client", "subtitle"]
 subtitle: ["Extra project page paragraphs", "Use comma seperated for new lines"]
+link: "https://external.link.com"
 description: "SEO short page descriptor"
 vimeo: "643973859"
 mobile: "video-file-name" # "with.jpg" for static
 background: "filename.jpg" # fallback used when no video is present
-tags: ["artwork", "installation"] # deprecated
+tags: [] # deprecated
 ---
 ```
 
