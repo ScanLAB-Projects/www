@@ -44,11 +44,11 @@ import Icon from "./Icon.astro";
   const isMobileMedia = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileMedia.matches;
   const $player = document.getElementById("player");
-  const MOBILE_SHOWREEL = "Showreel_A-v2";
+  const MOBILE_SHOWREEL = ["mobile-slp-a", "mobile-slp-b", "mobile-slp-c"];
+  const SHOWREEL = ["showreel-a", "showreel-b", "showreel-c"];
   $player.volume = 0;
 
-  const feeds = ["Showreel_A", "Showreel_B", "Showreel_C"];
-  const randomFeed = feeds[Math.floor(Math.random() * 3)];
+  const randomFeed = SHOWREEL[Math.floor(Math.random() * 3)];
   if (isMobile) {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const format = isIOS ? "mp4" : "webm";
@@ -64,8 +64,10 @@ import Icon from "./Icon.astro";
         $player.setAttribute("poster", `/mobile/${e.detail.mobile}`);
       } else {
         let filename =
-          e.detail.index === "0" ? MOBILE_SHOWREEL : e.detail.mobile;
-        $player.setAttribute("src", `${s3Media}/mobile-${filename}.${format}`);
+          e.detail.index === "0"
+            ? MOBILE_SHOWREEL[Math.floor(Math.random() * 3)]
+            : e.detail.mobile;
+        $player.setAttribute("src", `${s3Media}/${filename}.${format}`);
         $player.setAttribute("type", `video/${format}`);
       }
     });

@@ -2,11 +2,14 @@ import { defineCollection, z } from "astro:content";
 // import { glob, file } from "astro/loaders";
 const projects = defineCollection({
   schema: z.object({
+    heading: z.string().array().optional(),
     title: z.string(),
     client: z.string().optional(),
     subtitle: z.string().array().optional(),
     description: z.string().optional(),
     banner: z.string().optional(),
+    link: z.string().optional(),
+    location: z.string().optional(),
     tags: z.string().array().optional(),
     vimeo: z.string().optional(),
     background: z.string().optional(),

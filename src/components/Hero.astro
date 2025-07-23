@@ -1,17 +1,12 @@
 ---
 import { capitalize } from '$lib/utils/helpers';
-import config from '$lib/config/data'
-import { map } from 'astro:schema';
 interface Props {
-
-  heading: string;
+  heading?: string[];
+  title: string;
   client?: string;
   subtitle?: string[];
   background?: any | null;
-  link?: {
-    label?: string;
-    href?: string;
-  };
+  link?: string
   vimeo?: string;
   tags?: string[];
   fullscreen?: boolean;
@@ -22,6 +17,7 @@ interface Props {
 const {
   tags = [],
   heading,
+  title,
   vimeo,
   homepage = false,
   projectpage = false,
@@ -36,35 +32,37 @@ const {
 const fs = fullscreen ? 'is-fullscreen' : ''
 const style = background && background.src ? `background-image: url(${background.src});` : {};
 const video = vimeo ? `https://player.vimeo.com/video/${vimeo}` : null;
-const cleanTags = []// tags.filter((current) => config.tags.includes(current));
-
+// const cleanTags = []// tags.filter((current) => config.tags.includes(current));
+const linkText = link?.replace("https://", "")
+console.log(link, linkText)
 ---
 <>
 {
   homepage && 
-    <header {style} data-homepage class={`relative ${fs}`}>
+  <header {style} data-homepage class={`relative ${fs}`}>
       <slot />
         <div class="title absolute bottom-18 px-4 md:px-16 hidden md:block">
-          <h1 class="text-lg md:text-3xl 2xl:text-4xl">{heading}</h1>
+          <h1 class="text-lg md:text-3xl 2xl:text-4xl">{title}</h1>
         </div>
     </header>
 }
 {
   !video && background &&
-    <header {style} data-project={projectpage} class="relative">
+  <header {style} data-project={projectpage} class="relative">
       <div class="flex flex-col heading-detail">
         <div class="title flex flex-col gap-1 text-white">
-          <h1 class="text-lg md:text-3xl 2xl:text-4xl">{heading}</h1>
+          <h1 class="text-lg md:text-3xl 2xl:text-4xl">{title}</h1>
           {client && <h2 class="text-xs md:text-lg font-light">{client}</h2>}
           {!!subtitle.length && subtitle.map((para) => <p class="text-xs md:text-lg font-light xl:max-w-[60%]">{para}</p>)}
+          {!!link && <a class="link" target="_blank" href={link}>{linkText}</a>}
         </div>
         {/* {
         !!cleanTags.length && <div class="tags flex flex-row justify-end gap-2">
-            {cleanTags.map((tag) => (
-              <div class="tag-label">{capitalize(tag)}</div>
-            ))}
+        {cleanTags.map((tag) => (
+          <div class="tag-label">{capitalize(tag)}</div>
+          ))}
           </div>
-        } */}
+          } */}
       </div>
     </header>
 }
@@ -80,12 +78,8 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
           <h1 class="text-lg md:text-3xl 2xl:text-4xl">{heading}</h1>
           {client && <h2 class="text-xs md:text-lg 2xl:text-xl font-light">{client}</h2>}
           {!!subtitle.length && subtitle.map((para) => <p class="text-xs md:text-lg 2xl:text-xl font-light xl:max-w-[60%]">{para}</p>)}
+          {!!link && <a class="link" target="_blank" href={link}>{linkText}</a>}
         </div>
-        {/* <div class="tags flex flex-row justify-end gap-2">
-          {cleanTags.map((tag) => (
-            <div class="tag-label rounded-md px-2 text-xs flex items-center">{capitalize(tag)}</div>
-          ))}
-        </div> */}
       </div>
     </header>
   )
@@ -110,12 +104,6 @@ const cleanTags = []// tags.filter((current) => config.tags.includes(current));
       $vp.on('play', toggleHeroText)
       $vp.on('ended', toggleHeroText)
       $vp.on('pause', toggleHeroText)
-      $vp.on('loaded', () => {
-        const iframeDoc = $el.contentDocument || $el.contentWindow.document;
-        // const childElement = iframeDoc.getElementById('player')
-        console.log(iframeDoc)
-      })
-
     }
   }
   setupVimeo($vimeo)
@@ -264,5 +252,8 @@ async function getVimeoAPIPlayer() {
     max-width: 177.78vh; /* 16:9 aspect ratio constraint */
     border: none;
       object-fit: cover;
+}
+a.link:hover {
+  color: white;
 }
 </style>

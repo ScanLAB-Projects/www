@@ -4,6 +4,12 @@
     "projects": {
       "type": "object",
       "properties": {
+        "heading": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "title": {
           "type": "string"
         },
@@ -20,6 +26,12 @@
           "type": "string"
         },
         "banner": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "location": {
           "type": "string"
         },
         "tags": {

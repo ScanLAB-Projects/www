@@ -54,9 +54,10 @@ const selected = data.order.reduce((accum, target) => {
 <script is:inline>
   const $el = document.getElementById("MobileScroller");
   const $next = document.querySelector(".toktok");
-  function scrollNext() {
+  function scrollNext(e) {
+    let max = e?.target?.dataset?.max || 5;
     let i = ~~$el.dataset.current + 1;
-    if (i > 5) i = "0";
+    if (i > max) i = "0";
 
     const target = document.querySelector(`[data-index="${i}"]`);
     target.scrollIntoView({
