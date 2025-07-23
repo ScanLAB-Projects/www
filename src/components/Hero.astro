@@ -14,7 +14,6 @@ interface Props {
   projectpage?: boolean;
 }
 const {
-  tags = [],
   heading = [],
   title,
   vimeo,
@@ -25,7 +24,6 @@ const {
   subtitle = [],
   link,
   fullscreen = false,
-  date,
 }: Props = Astro.props;
 
 const fs = fullscreen ? 'is-fullscreen' : ''
