@@ -8,6 +8,8 @@ interface Props {
   alt?: string;
   caption?: string;
 }
+
+/* OLDCODE 
 const { href, alt, caption } = Astro.props;
 const slug = Astro.params.slug;
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -27,6 +29,38 @@ if (imageData) {
       ? "landscape"
       : "portrait";
 }
+*/
+
+// NEW DEBUG CODE
+console.log('ImageMagic Debug:');
+console.log('- slug:', slug);
+console.log('- href:', href);
+console.log('- Looking for:', `/src/assets/projects/${slug}/${href}`);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/**/*.{jpeg,jpg,png,gif}"
+);
+
+console.log('- Available images:', Object.keys(images));
+
+const imagePath = `/src/assets/projects/${slug}/${href}`;
+const source = await images[imagePath];
+
+if (!source) {
+  throw new Error(
+    `Image "${imagePath}" does not exist in glob: "/src/assets/projects/**/*.{jpeg,jpg,png,gif}"`
+  );
+}
+
+const imageData = await getImage({ src: source() });
+let orientation = "landscape";
+if (imageData) {
+  orientation =
+    imageData.options.width! > imageData.options.height!
+      ? "landscape" 
+      : "portrait";
+}
+
 ---
 
 <div class="img-anchor">
