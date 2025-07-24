@@ -27,7 +27,7 @@ export default {
     // "pistol",
     "eternal-return",
     "buried-in-the-rock",
-    "echoes-from-taiwan",
+    // "echoes-from-taiwan",
     "adult-children",
     "man-of-the-woods",
     "guardian-limbo",
