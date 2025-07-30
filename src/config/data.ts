@@ -35,7 +35,7 @@ export default {
     //"post-lenticular-landscapes-korea",
     //"italys-invisible-cities",
     //"mail-rail-viewers",
-    //"post-lenticular-landscapes",
+    "post-lenticular-landscapes",
     "dreamlife-of-driverless-cars",
     // "crime-scene",
     "displaced-witness",
