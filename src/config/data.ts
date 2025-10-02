@@ -42,7 +42,7 @@ export default {
     //"bartlett-transformation",
     //"mary-rose",
     //"pompeii-new-secrets-revealed",
-    //"frozen-relic",
+    "frozen-relic",
     //"climate-impact-tour",
     "museum-made-digital",
     //"romes-invisible-city-vr",
