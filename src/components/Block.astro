@@ -16,8 +16,8 @@ const { title, body, link, type = "standard" } = Astro.props;
   <ul class="gap-0 font-light">
     {
       body.map((content) => (
-        <li>
-          <p>{content}</p>
+        <li class={content === "SPACER" ? "spacer" : ""}>
+          {content === "SPACER" ? "" : <p>{content}</p>}
         </li>
       ))
     }
@@ -57,6 +57,11 @@ const { title, body, link, type = "standard" } = Astro.props;
   .info ul {
     padding-left: var(--spacing-level-4);
     border-left: var(--spacing-level-9) solid var(--col-dark);
+  }
+  
+  /* NEW: Spacer styling */
+  .spacer {
+    height: 1.5em;
   }
 
   @media (min-width: 768px) {
