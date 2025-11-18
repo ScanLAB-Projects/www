@@ -39,10 +39,17 @@ function removeYear(date?: string) {
 <article class="flex flex-col font-light max-w-3xl gap-6 w-[100%] px-8">
   <div class="flex flex-col justify-between gap-4">
     <div class="flex flex-col justify-start">
-      <h3 class="text-lg sm:text-2xl font-bold shrink-1">
-        <a class="border-b-2" href={`/projects/${url}`}>{title}</a>
-        <!-- <span class="border-b-2"></span> -->
-      </h3>
+     <h3 class="text-lg sm:text-2xl font-bold shrink-1">
+       {
+         url ? (
+           <a class="border-b-2" href={`/projects/${url}`}>
+             {title}
+           </a>
+         ) : (
+           <span>{title}</span>
+         )
+       }
+     </h3>
       <h4>{client}</h4>
     </div>
     <div
