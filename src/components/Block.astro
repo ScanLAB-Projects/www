@@ -6,7 +6,7 @@ interface Props {
     label?: string;
     href?: string;
   };
-  type?: "credits" | "list" | "standard" | "info";
+  type?: "credits" | "list" | "standard" | "info" | "artwork"; // Added "artwork"
 }
 const { title, body, link, type = "standard" } = Astro.props;
 ---
@@ -15,9 +15,11 @@ const { title, body, link, type = "standard" } = Astro.props;
   {title && <p class="bold">{title}</p>}
   <ul class="gap-0 font-light">
     {
-      body.map((content) => (
+      body.map((content, index) => (
         <li class={content === "SPACER" ? "spacer" : ""}>
-          {content === "SPACER" ? "" : <p>{content}</p>}
+          {content === "SPACER" ? "" : (
+            <p class={index === 0 ? "primary-text" : "secondary-text"}>{content}</p>
+          )}
         </li>
       ))
     }
@@ -47,7 +49,6 @@ const { title, body, link, type = "standard" } = Astro.props;
     margin-top: 1em;
     display: flex;
     flex-direction: column;
-    /* gap: var(--spacing-level-7); */
   }
   .list li {
     margin-left: 1em;
@@ -59,9 +60,19 @@ const { title, body, link, type = "standard" } = Astro.props;
     border-left: var(--spacing-level-9) solid var(--col-dark);
   }
   
-  /* NEW: Spacer styling */
   .spacer {
     height: 1.5em;
+  }
+
+  /* NEW: Artwork-specific styling */
+  .artwork .primary-text {
+    font-weight: 400; /* Lighter than the default */
+  }
+
+  .artwork .secondary-text {
+    font-size: 0.85em;
+    font-weight: 300;
+    opacity: 0.9;
   }
 
   @media (min-width: 768px) {
