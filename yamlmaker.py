@@ -26,9 +26,14 @@ with open(input_csv, newline='', encoding='utf-8') as csvfile:
         formatted_date = date_obj.strftime("%Y-%m-%d")
         date_prefix = kebab_case(formatted_date) if date_to else ""
 
-        if not url or not date_prefix:
+       #OLD VERSION 
+        #if not url or not date_prefix:
             # Skip this row if slug or date_prefix is missing/empty
-            continue
+            #continue
+            
+        if not date_prefix:
+        # Skip this row only if the date is missing/invalid
+        continue    
 
         filename = f"{date_prefix}-{row['url']}.md"
         filepath = os.path.join(output_dir, filename)
