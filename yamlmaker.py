@@ -33,7 +33,7 @@ with open(input_csv, newline='', encoding='utf-8') as csvfile:
             
         if not date_prefix:
         # Skip this row only if the date is missing/invalid
-        continue    
+            continue    
 
         filename = f"{date_prefix}-{row['url']}.md"
         filepath = os.path.join(output_dir, filename)
