@@ -88,7 +88,11 @@ const PAST_EXHIBITIONS = exhibitions.filter(
           PAST_EXHIBITIONS.map(({ data }) => (
             <div class="grid grid-cols-5 gap-2 font-light text-xs md:text-sm border-b-2 lg:border-0 pb-1 md:pb-0">
               <span class="col-span-2">
-                <a href={`/projects/${data.url}`}>{data.title}</a>
+                {data.url ? (
+                  <a href={`/projects/${data.url}`}>{data.title}</a>
+                ) : (
+                  <span>{data.title}</span>
+                )}
               </span>
               <div class="group col-span-2">
                 <span class="">{data.venue}</span>
