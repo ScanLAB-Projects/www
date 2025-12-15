@@ -66,7 +66,7 @@ const linkText = link?.replace("https://", "")
     <script src="https://player.vimeo.com/api/player.js"></script>
     <header {style} class="relative" data-project={projectpage}>
       <div class="video-container">
-      <iframe id="vimeo" src={video} />
+        <iframe id="vimeo" src={video} allow="fullscreen" />
       </div>
       <div class="flex flex-col heading-detail gap-8 md:gap-0">
         <div class="slp-target title flex flex-col gap-1 text-white">
@@ -176,20 +176,15 @@ async function getVimeoAPIPlayer() {
   header {
     overflow: hidden;
     width: 100%;
-    height: 80vh;
+    height: 80dvh;
     background-color: var(--col-black);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     transition: height .3s;
-    &.is-fullscreen {
-      height: 100dvh;
-    }
-    &[data-project="true"] {
-      h1 {
-        font-weight: 600;
-      }
+    &[data-project="true"] h1 {
+      font-weight: 600;
     }
     h1,
     h2 {
@@ -208,6 +203,7 @@ async function getVimeoAPIPlayer() {
       }
     }
   }
+ 
   @media (max-width: 640px) {
     header {
       background-position: 50%;
@@ -233,26 +229,33 @@ async function getVimeoAPIPlayer() {
       left: var(--spacing-level-4);
     }
   }
-  #video-container iframe #player {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+header.is-fullscreen {
+  height: 100dvh;
+  .video-container {
+    height: 100dvh;
+  }
 }
 .video-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  transition: height .3s;
+  height: 80dvh;
+  width: 100%;
 }
 
 .video-container iframe {
-    width: 100%;
-    height: 100%;
     max-width: 177.78vh; /* 16:9 aspect ratio constraint */
     border: none;
-      object-fit: cover;
 }
+ header[data-project="true"][mobile="true"] {
+    .video-container {   
+      width: calc(80dvh * 16/9);
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.is-fullscreen .video-container {
+      width: calc(100dvh * 16/9);
+    }
+  }
 a.link:hover {
   color: white;
 }
