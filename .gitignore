@@ -1,6 +1,6 @@
 .DS_Store
 .vscode
-.astro
+.astro/
 .csv
 
 dist
@@ -48,4 +48,4 @@ src/pages/post-lenticular-landscapes
 src/pages/romes-invisible-city-vr
 src/pages/romes-invisible-city
 src/pages/savage-beauty
-src/pages/stephensons-rocket
+src/pages/stephensons-rocket.astro/
