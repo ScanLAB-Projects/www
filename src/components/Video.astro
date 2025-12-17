@@ -40,7 +40,7 @@ import Icon from "./Icon.astro";
   }
 </style>
 <script is:inline>
-  const s3Media = "http://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
+  const s3Media = "https://s3.eu-west-1.amazonaws.com/media.scanlabprojects";
   const isMobileMedia = window.matchMedia("(max-width: 640px)");
   const isMobile = isMobileMedia.matches;
   const $player = document.getElementById("player");
