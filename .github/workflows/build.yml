@@ -21,20 +21,20 @@ jobs:
         with:
           version: 9.9.0
 
-      - name: Install python dependencies
-        run: python3 -m pip install pyyaml
+      # - name: Install python dependencies
+      #   run: python3 -m pip install pyyaml
 
-      - name: Install dependencies
-        run: pnpm install
+      # - name: Install dependencies
+      #   run: pnpm install
 
-      - name: Get Exhibition data
-        run: pnpm get-csv-data
+      # - name: Get Exhibition data
+      #   run: pnpm get-csv-data
 
-      - name: Generate Exhibition MDX
-        run: pnpm build-xib-data
+      # - name: Generate Exhibition MDX
+      #   run: pnpm build-xib-data
 
-      - name: Build project
-        run: pnpm build
+      # - name: Build project
+      #   run: pnpm build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -43,5 +43,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
 
-      - name: Sync dist to S3
-        run: aws s3 sync dist/ s3://${{ vars.S3_BUCKET }}/
+      - name: List CloudFront Distributions
+        run: |
+          echo "CloudFront Distributions:"
+          aws cloudfront list-distributions --query 'DistributionList.Items[*].[Id,DomainName]' --output table
+
+      # - name: Sync dist to S3
+      #   run: aws s3 sync dist/ s3://${{ vars.S3_BUCKET }}/
