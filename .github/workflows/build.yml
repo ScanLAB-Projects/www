@@ -43,28 +43,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
 
-      # - name: Sync dist to S3
-      #   run: aws s3 sync dist/ s3://${{ vars.S3_BUCKET }}/
+      - name: Sync dist to S3
+        run: aws s3 sync dist/ s3://${{ vars.S3_BUCKET }}/
 
-      - name: Sync dist to S3 and track changes
-        id: sync
+      - name: Invalidate CloudFront
         run: |
-          # Sync and capture output
-          aws s3 sync dist/ s3://${{ vars.S3_BUCKET }}/ > sync_output.txt
-
-          # Extract changed files
-          grep "upload:" sync_output.txt | awk '{print "/"$NF}' > changed_files.txt
-
-          # Show what changed
-          cat changed_files.txt
-
-      # - name: Invalidate only changed files
-      #   run: |
-      #     if [ -s changed_files.txt ]; then
-      #       PATHS=$(cat changed_files.txt | tr '\n' ' ')
-      #       aws cloudfront create-invalidation \
-      #         --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
-      #         --paths $PATHS
-      #     else
-      #       echo "No files changed, skipping invalidation"
-      #     fi
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
