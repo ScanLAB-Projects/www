@@ -46,6 +46,15 @@ const shareImage = shareSource
       Astro.site
     ).href
   : undefined;
+const work = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: title,
+  description: description || undefined,
+  image: shareImage,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  creator: { "@id": new URL("/#organization", Astro.site).href },
+};
 ---
 
 <Layout
@@ -54,6 +63,7 @@ const shareImage = shareSource
   {description}
   image={shareImage}
   {noindex}
+  schema={work}
 >
   <Hero
     projectpage={true}

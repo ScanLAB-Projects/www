@@ -13,17 +13,41 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  schema?: Record<string, unknown>;
 }
 const {
   title,
   description,
   image = `${data.s3Bucket}/scanlabprojects.jpg`,
   noindex = false,
+  schema,
   dark = false,
   projects = true,
   nav = true,
 } = Astro.props;
 const fullTitle = title ? `${title} | ScanLAB Projects` : "ScanLAB Projects";
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "ArtsOrganization",
+  "@id": new URL("/#organization", Astro.site).href,
+  name: "ScanLAB Projects",
+  url: new URL("/", Astro.site).href,
+  logo: new URL("/scanlabprojects.png", Astro.site).href,
+  email: "studio@scanlabprojects.co.uk",
+  telephone: "+44 20 7739 2524",
+  founder: [
+    { "@type": "Person", name: "Matthew Shaw" },
+    { "@type": "Person", name: "William Trossell" },
+  ],
+  // TODO(William): add streetAddress and postalCode once the new studio address is confirmed.
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "London",
+    addressCountry: "GB",
+  },
+};
+const jsonLd = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -54,7 +78,21 @@ const fullTitle = title ? `${title} | ScanLAB Projects` : "ScanLAB Projects";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={jsonLd(organization)}
+    />
+    {
+      schema && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={jsonLd(schema)}
+        />
+      )
+    }
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6L28TGXHFS"></script>
     <script is:inline>
@@ -62,6 +100,10 @@ const fullTitle = title ? `${title} | ScanLAB Projects` : "ScanLAB Projects";
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-6L28TGXHFS');
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest('a[href^="mailto:"], a[href^="tel:"]');
+        if (a && window.gtag) gtag("event", a.href.startsWith("mailto:") ? "contact_email_click" : "contact_phone_click", { link_url: a.href });
+      });
     </script>
   </head>
   <body>
