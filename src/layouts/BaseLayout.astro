@@ -6,54 +6,51 @@ import Logo from "$lib/components/Logo.astro";
 import Navigator from "$lib/components/Navigator.astro";
 import Footer from "$lib/components/Footer.astro";
 interface Props {
-  title: string;
+  title?: string;
   dark?: boolean;
   projects?: boolean;
   nav?: boolean;
   description?: string;
-  slug?: string;
+  image?: string;
+  noindex?: boolean;
 }
 const {
   title,
-  slug,
   description,
+  image = `${data.s3Bucket}/scanlabprojects.jpg`,
+  noindex = false,
   dark = false,
   projects = true,
   nav = true,
 } = Astro.props;
+const fullTitle = title ? `${title} | ScanLAB Projects` : "ScanLAB Projects";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <SEO
-      {title}
+      title={fullTitle}
       {description}
+      {noindex}
       openGraph={{
         basic: {
-          title,
+          title: fullTitle,
           type: "website",
-          image: slug
-            ? `https://scanlabprojects.co.uk/images/work/${slug}/adultchildren--banner.jpg`
-            : "https://s3.eu-west-1.amazonaws.com/media.scanlabprojects/scanlabprojects.jpg",
+          image,
         },
         optional: {
           siteName: "ScanLAB Projects",
         },
       }}
-      extend={{
-        meta: [
-          {
-            name: "twitter:image",
-            content: `${data.s3Bucket}/scanlabprojects.jpg`,
-          },
-          { name: "twitter:title", content: `ScanLAB Projects: ${title}` },
-          { name: "twitter:description", content: description },
-        ],
+      twitter={{
+        card: "summary_large_image",
+        title: fullTitle,
+        description,
+        image,
       }}
     />
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
