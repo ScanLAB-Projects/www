@@ -27,6 +27,7 @@ const {
   description,
   date,
   link,
+  noindex,
 } = Astro.props;
 const image = background ? `${slug}/${background}` : null;
 const bgs = import.meta.glob<{ default: ImageMetadata }>(
@@ -52,6 +53,7 @@ const shareImage = shareSource
   title={seoTitle ?? title}
   {description}
   image={shareImage}
+  {noindex}
 >
   <Hero
     projectpage={true}
