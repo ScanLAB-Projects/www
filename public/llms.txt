@@ -1,6 +1,6 @@
 # ScanLAB Projects
 
-> London-based, artist-led studio exploring the world through 3D scanning and machine vision. Its work spans large-scale installation, film, sculpture, XR, immersive storytelling and live performance for museums, botanic gardens, festivals and broadcasters. Founded in 2010 by Matthew Shaw and William Trossell. <!-- TODO(William): confirm founding year. The site says 2010; Companies House says incorporated 2011. -->
+> London-based, artist-led studio exploring the world through 3D scanning and machine vision. Its work spans large-scale installation, film, sculpture, XR, immersive storytelling and live performance for museums, botanic gardens, festivals and broadcasters. Founded in 2010 by Matthew Shaw and William Trossell.
 
 ScanLAB has exhibited at the Royal Academy, LACMA, the Venice Biennale, the Barbican, the Science Museum, the New Museum, SXSW and Tribeca. Its work has been published by the BBC, PBS, National Geographic, Nature, The New York Times and The Guardian.
 
@@ -35,4 +35,4 @@ ScanLAB has exhibited at the Royal Academy, LACMA, the Venice Biennale, the Barb
 - [Exhibitions](https://scanlabprojects.co.uk/exhibitions/)
 - [Sustainability](https://scanlabprojects.co.uk/sustainability/)
 - Contact: studio@scanlabprojects.co.uk, +44 20 7739 2524
-- Studio: London. <!-- TODO(William): add the new studio address once confirmed. The site still shows Durham Yard. -->
+- Studio: London.
