@@ -30,7 +30,7 @@ const PAST_EXHIBITIONS = exhibitions.filter(
 );
 ---
 
-<Layout dark={true} title="Exhibitions - ScanLAB Projects" {description}>
+<Layout dark={true} title="Exhibitions" {description}>
   <main class="px-0 sm:px-8">
     {!!UPCOMING_EXHIBITIONS.length && <Heading>Upcoming</Heading>}
     {
@@ -89,7 +89,7 @@ const PAST_EXHIBITIONS = exhibitions.filter(
             <div class="grid grid-cols-5 gap-2 font-light text-xs md:text-sm border-b-2 lg:border-0 pb-1 md:pb-0">
               <span class="col-span-2">
                 {data.url ? (
-                  <a href={`/projects/${data.url}`}>{data.title}</a>
+                  <a href={`/projects/${data.url}/`}>{data.title}</a>
                 ) : (
                   <span>{data.title}</span>
                 )}

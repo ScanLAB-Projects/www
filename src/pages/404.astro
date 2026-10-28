@@ -3,7 +3,13 @@ import Layout from "$lib/layouts/BaseLayout.astro";
 import Logo from "$lib/components/Logo.astro";
 ---
 
-<Layout dark={true} nav={false} title="404">
+<Layout
+  dark={true}
+  nav={false}
+  title="Page not found"
+  description="This page could not be found."
+  noindex={true}
+>
   <div class="page-block grid place-content-center">
     <div class="flex flex-col gap-8 items-center">
       <Logo dark={true} asset={true} />

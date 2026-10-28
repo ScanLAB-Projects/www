@@ -4,6 +4,7 @@ const projects = defineCollection({
   schema: z.object({
     heading: z.string().array().optional(),
     title: z.string(),
+    seoTitle: z.string().optional(),
     client: z.string().optional(),
     subtitle: z.string().array().optional(),
     description: z.string().optional(),
@@ -15,6 +16,7 @@ const projects = defineCollection({
     background: z.string().optional(),
     date: z.string().optional(),
     mobile: z.string().optional(),
+    noindex: z.boolean().optional(),
   }),
 });
 

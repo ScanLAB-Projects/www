@@ -1,7 +1,7 @@
 .DS_Store
 .vscode
 .astro/
-.csv
+*.csv
 
 dist
 node_modules
