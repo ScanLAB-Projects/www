@@ -1,16 +1,16 @@
 User-agent: *
 Allow: /
 
-# AI crawlers are explicitly welcome
+# AI crawlers are explicitly welcome, except on the template pages.
+# Search engines are not blocked from those pages, so they can read
+# the pages' noindex tag.
 User-agent: GPTBot
-Allow: /
 User-agent: OAI-SearchBot
-Allow: /
 User-agent: ClaudeBot
-Allow: /
 User-agent: PerplexityBot
-Allow: /
 User-agent: Google-Extended
 Allow: /
+Disallow: /projects/second/
+Disallow: /projects/third/
 
 Sitemap: https://scanlabprojects.co.uk/sitemap-index.xml

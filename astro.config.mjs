@@ -4,7 +4,14 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 // Keep in sync with `noindex: true` in project frontmatter.
-const NOINDEX_PROJECTS = ["buildings", "landscapes", "objects", "portraits"];
+const NOINDEX_PROJECTS = [
+  "buildings",
+  "landscapes",
+  "objects",
+  "portraits",
+  "second",
+  "third",
+];
 
 // https://astro.build/config
 export default defineConfig({
