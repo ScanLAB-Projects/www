@@ -1,0 +1,39 @@
+# ScanLAB Projects
+
+> London-based, artist-led studio exploring the world through 3D scanning and machine vision. Its work spans large-scale installation, film, sculpture, XR, immersive storytelling and live performance for museums, botanic gardens, festivals and broadcasters. Founded in 2010 by Matthew Shaw and William Trossell.
+
+ScanLAB has exhibited at the Royal Academy, LACMA, the Venice Biennale, the Barbican, the Science Museum, the New Museum, SXSW and Tribeca. Its work has been published by the BBC, PBS, National Geographic, Nature, The New York Times and The Guardian.
+
+## Key works
+
+- [FRAMERATE: Desert Pulse](https://scanlabprojects.co.uk/projects/desert-pulse/): a portrait of Phoenix and the Sonoran Desert, commissioned by Desert Botanical Garden, Arizona.
+- [FRAMERATE: Rhythms Around Us](https://scanlabprojects.co.uk/projects/rhythms-around-us/): the second FRAMERATE artwork, premiered at Tribeca Immersive in 2024 at Mercer Labs, New York.
+- [FRAMERATE: Pulse of the Earth](https://scanlabprojects.co.uk/projects/pulse-of-the-earth/): the first FRAMERATE artwork, made from thousands of daily 3D time-lapse scans of British landscapes. Shown at La Biennale di Venezia, COP26 and SXSW.
+- [Felix's Room](https://scanlabprojects.co.uk/projects/felixs-room/): a digital hybrid theatre production at the Berliner Ensemble, 2023, reconstructing the life of Felix and Erna Ganz.
+- [Replica | Real | Replica](https://scanlabprojects.co.uk/projects/replica-real-replica/): a journey through Sir John Soane's Museum in London, commissioned by EPFL.
+- [Lost Treasures of the Maya](https://scanlabprojects.co.uk/projects/lost-treasures-of-maya/): scans for Nat Geo and Channel 4 that unlock the secrets of the ancient Maya world.
+- [Eternal Return](https://scanlabprojects.co.uk/projects/eternal-return/): a choreographed mixed reality exhibition exploring the future of memory, shown at STRP, SXSW and CPH:DOX.
+- [Buried in the Rock](https://scanlabprojects.co.uk/projects/buried-in-the-rock/): a VR documentary following cavers Tim and Pam Fogg, shown at IDFA in 2023.
+- [Adult Children](https://scanlabprojects.co.uk/projects/adult-children/): a virtual theatre experience with the Donmar Warehouse about social distance.
+- [Man of the Woods](https://scanlabprojects.co.uk/projects/man-of-the-woods/): opening visuals for Justin Timberlake's 2018-19 Man of the Woods World Tour, with Good Company.
+- [Limbo](https://scanlabprojects.co.uk/projects/guardian-limbo/): a VR film for The Guardian about the experience of seeking asylum in the UK.
+- [Post-lenticular Landscapes](https://scanlabprojects.co.uk/projects/post-lenticular-landscapes/): a re-enactment of the early photographic expeditions into Yosemite National Park, using terrestrial laser scanning.
+- [Dream Life of Driverless Cars](https://scanlabprojects.co.uk/projects/dreamlife-of-driverless-cars/): images and a short film for the New York Times Magazine about how driverless cars might see.
+- [Displaced Witness](https://scanlabprojects.co.uk/projects/displaced-witness/): an installation built from 3D scan data of the island of Lesvos, exhibited at Baltic in 2017.
+- [Frozen Relic: Arctic Works](https://scanlabprojects.co.uk/projects/frozen-relic/): the Arctic landscape recreated in frozen saltwater, exhibited at the AA Gallery.
+- [A Museum Made Digital](https://scanlabprojects.co.uk/projects/museum-made-digital/): a digital replica of Sir John Soane's Museum for online visitors to explore.
+- [Horizontal Humans](https://scanlabprojects.co.uk/projects/horizontal-humans/): a time-lapse 3D scan animation, shown at The Photographers' Gallery, London, in 2015.
+- [ibeyi: OYA](https://scanlabprojects.co.uk/projects/ibeyi/): ibeyi's first music video and their world tour visuals, for XL Recordings.
+- [Phantom](https://scanlabprojects.co.uk/projects/phantom/): an immersive VR journey into the Brazilian rainforest with artist Daniel Steegmann, at the New Museum, New York.
+- [COLLAPSE](https://scanlabprojects.co.uk/projects/collapse/): the finale of a collaboration with dance company New Movement Collective, at the Southbank Centre.
+- [NOISE: Error in the Void](https://scanlabprojects.co.uk/projects/noise/): explores the mistakes made by modern technologies of vision. Surface Gallery, London, 2014.
+- [Living Death Camps](https://scanlabprojects.co.uk/projects/forensic-architecture/): part of Forensic Architecture's FORENSIS exhibition at Haus der Kulturen der Welt, Berlin, in 2014.
+- [Invisible Cities](https://scanlabprojects.co.uk/projects/invisible-cities/): a VR project for the BBC.
+
+## About
+
+- [About](https://scanlabprojects.co.uk/about/)
+- [Exhibitions](https://scanlabprojects.co.uk/exhibitions/)
+- [Sustainability](https://scanlabprojects.co.uk/sustainability/)
+- Contact: studio@scanlabprojects.co.uk, +44 20 7739 2524
+- Studio: London.

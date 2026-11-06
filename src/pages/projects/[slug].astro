@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry } from "astro:content";
+import { getImage } from "astro:assets";
 import Layout from "$lib/layouts/BaseLayout.astro";
 import Hero from "$lib/components/Hero.astro";
 export async function getStaticPaths() {
@@ -17,6 +18,7 @@ const { Content } = (await mdx?.render()) || { Content: "" };
 const {
   heading,
   title,
+  seoTitle,
   vimeo,
   client,
   subtitle,
@@ -25,18 +27,44 @@ const {
   description,
   date,
   link,
+  noindex,
 } = Astro.props;
 const image = background ? `${slug}/${background}` : null;
+const bgs = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/projects/**/*.jpg`
+);
 let hero;
 if (image) {
-  const bgs = import.meta.glob<{ default: ImageMetadata }>(
-    `/src/assets/projects/**/*.jpg`
-  );
   hero = await bgs[`/src/assets/projects/${image}`]();
 }
+const shareSource =
+  hero ?? (await bgs[`/src/assets/projects/${slug}/banner.jpg`]?.());
+const shareImage = shareSource
+  ? new URL(
+      (await getImage({ src: shareSource.default, width: 1200, format: "jpg" }))
+        .src,
+      Astro.site
+    ).href
+  : undefined;
+const work = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: title,
+  description: description || undefined,
+  image: shareImage,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  creator: { "@id": new URL("/#organization", Astro.site).href },
+};
 ---
 
-<Layout dark={false} {title} {slug} {description}>
+<Layout
+  dark={false}
+  title={seoTitle ?? title}
+  {description}
+  image={shareImage}
+  {noindex}
+  schema={work}
+>
   <Hero
     projectpage={true}
     {heading}
