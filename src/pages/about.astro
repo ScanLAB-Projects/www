@@ -7,9 +7,11 @@ import TeamCard from "$lib/components/TeamCard.astro";
 import bg from "src/assets/about/about.jpg";
 const description =
   "A pioneering creative practice exploring the world through precise, beautiful digital replicas of buildings, landscapes, objects and events";
+const metaDescription =
+  "ScanLAB Projects is an artist-led studio founded in 2010 by Matt Shaw and William Trossell. Its 3D scanning artworks reflect on society and the natural world.";
 ---
 
-<Layout dark={true} title="About" {description}>
+<Layout dark={true} title="About" description={metaDescription}>
   <Hero title={description} background={bg} />
   <main>
     <p>

@@ -11,6 +11,7 @@ const NOINDEX_PROJECTS = [
   "portraits",
   "second",
   "third",
+  "romes-invisible-cities",
 ];
 
 // https://astro.build/config
